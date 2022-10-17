@@ -7,10 +7,9 @@ print(s.getsockname()[0])
 print("\n", s)
 
 import ipaddress
-
 IP = s.getsockname()[0]
-netmask = ipaddress.IPv4Network(s.getsockname()[0]).netmask
-MASK = netmask
+network = ipaddress.ip_network(addr+'/'+str(network_bits+extra_bits))
+MASK = "255.255.0.0"
 
 host = ipaddress.IPv4Address(IP)
 net = ipaddress.IPv4Network(IP + '/' + MASK, False)
