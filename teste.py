@@ -4,8 +4,8 @@ from scapy.all import ICMP, sr, IP, srloop, send
 
 
 def pingpong(theip):
-    sr(IP(dst=theip, src="10.3.2.12")/ICMP(), timeout=5)
+    sr(IP(dst=theip, src="192.168.236.8")/ICMP(), timeout=5)
     return
 
 
-pingpong("10.3.2.1")
+pingpong("192.168.236.3")
