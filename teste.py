@@ -1,28 +1,9 @@
-import ipaddress
-from xml.etree.ElementTree import tostring
+#!C:\Users\etien\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\python.exe
+
+from scapy.all import ICMP, sr, IP
+
+#conf.use_pcap = True
 
 IP = input()
-tabipmask = IP.split("/")
-theIp = ipaddress.IPv4Address(tabipmask[0])
-net = ipaddress.IPv4Interface(IP)
-broad = ipaddress.IPv4Network(net.network,  False)
-print('IP: ', IP)
-print('Reseau: ', net.network)
-print('Broadcast: ', broad.broadcast_address)
-# savenetadress = net.network
-
-# partreseau = tostring(savenetadress).split(".")
-# partBroad = broad.broadcast_address.split(".")
-
-# nonmutableparip =  []
-
-# for i in range(len(partBroad)):
-#     if (partBroad[i] == partreseau[i]):
-#         nonmutableparip.append(partBroad[i])
-
-# print(nonmutableparip)
-
-nbip = 32 - int(tabipmask[1])
-i = 1
-for i in range(2**nbip - 2):
-    print(i)
+packet = sr(IP(dst=IP)/ICMP(), timeout=3)
+srloop(packet)
