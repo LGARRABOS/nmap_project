@@ -1,6 +1,3 @@
-
-import socket
-
 import ipaddress
 from xml.etree.ElementTree import tostring
 
