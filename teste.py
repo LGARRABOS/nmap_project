@@ -6,7 +6,7 @@ def pingpong(theip):
 
 
     # sr(IP(dst=theip, src="192.168.236.8")/ICMP(), timeout=5)
-    arping("192.168.236.255/24")
+    arping("192.168.236.1/24")
     return
 
 
