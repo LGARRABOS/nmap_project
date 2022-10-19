@@ -7,4 +7,4 @@ def pingpong(theip):
     return
 
 
-pingpong("192.168.236.0")
+pingpong("192.168.236.")
