@@ -13,25 +13,25 @@ reseauscan = input()
 print("\n L'ip que vous avez entrez est bien : ", reseauscan, " Y/N")
 rep = input()
 
-if (rep == "Y" or rep == "y"):
-    if (rep.__contains__("/")):
+if rep == "Y" or rep == "y":
+    if rep in "/":
         tabtestip = rep.split(".")
-        if (tabtestip.len == 4):
+        if tabtestip.len == 4:
             pingpong(reseauscan)
         else:
             "Votre Ip ne contient pas le bon format"
     else:
         "Votre Ip ne contient pas le bon format"
 
-while (rep != "y" and rep.__contains__("/") == False and tabtestip.len != 4):
+while rep != "y" and rep in "/" == False and tabtestip.len != 4:
     print("Entrez le réseau que vous voulez scannez sous la forme 00.00.00.00/00")
     reseauscan = input()
     print("\n L'ip que vous avez entrez est bien : ", reseauscan, " Y/N")
     rep = input()
-    if (rep == "Y" or rep == "y"):
-        if (rep.__contains__("/")):
+    if rep == "Y" or rep == "y":
+        if rep in "/":
             tabtestip = rep.split(".")
-            if (tabtestip.len == 4):
+            if tabtestip.len == 4:
                 pingpong(reseauscan)
             else:
                 "Votre Ip ne contient pas le bon format"
