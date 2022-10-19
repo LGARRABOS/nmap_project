@@ -1,4 +1,7 @@
 # C:\Users\etien\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\python.exe
+import ipaddress
+import netifaces
+from netaddr import IPAddress
 from scapy.all import ICMP, sr, IP, srloop, send, arping
 
 
@@ -6,36 +9,12 @@ def pingpong(theip):
     arping(theip)
     return
 
-print("Entrez le réseau que vous voulez scannez sous la forme 00.00.00.00/00")
-reseauscan = input()
-
-
-print("\n L'ip que vous avez entrez est bien : ", reseauscan, " Y/N")
-rep = input()
-
-if rep == "Y" or rep == "y":
-    if rep in "/":
-        tabtestip = rep.split(".")
-        if tabtestip.len == 4:
-            pingpong(reseauscan)
-        else:
-            "Votre Ip ne contient pas le bon format"
-    else:
-        "Votre Ip ne contient pas le bon format"
-
-while rep != "y" and rep in "/" == False and tabtestip.len != 4:
-    print("Entrez le réseau que vous voulez scannez sous la forme 00.00.00.00/00")
-    reseauscan = input()
-    print("\n L'ip que vous avez entrez est bien : ", reseauscan, " Y/N")
-    rep = input()
-    if rep == "Y" or rep == "y":
-        if rep in "/":
-            tabtestip = rep.split(".")
-            if tabtestip.len == 4:
-                pingpong(reseauscan)
-            else:
-                "Votre Ip ne contient pas le bon format"
-        else:
-            "Votre Ip ne contient pas le bon format"
-
+all_interface=netifaces.interfaces()
+print(all_interface)
+interfaces = str(input())
+IpAddr = netifaces.ifaddresses(interfaces)[netifaces.AF_INET][0]['addr']
+Netmask = netifaces.ifaddresses(interfaces)[netifaces.AF_INET][0]['netmask']
+NetworkAdresse = ipaddress.ip_network(IpAddr + '/'+str(IPAddress(Netmask).netmask_bits()), strict=False)
+print(NetworkAdresse )
+pingpong(str(NetworkAdresse ))
 
