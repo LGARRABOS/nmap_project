@@ -9,7 +9,7 @@ import json
 
 
 def pingpong(theip):
-    ans, unans = sr(IP(dst="192.168.236.1",proto=(0,255))/"SCAPY",retry=2)
+    ans, unans = sr(IP(dst="192.168.1.0/24")/ICMP(), timeout=3)
     dict1 = {}
     compt = 0
     for sent, recieved in ans:
