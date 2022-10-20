@@ -6,8 +6,10 @@ from scapy.all import *
 
 
 def pingpong(theip):
-    ans = arping(theip)
-    return ans[0]
+    ans, unans = srp(Ether(dst="ff:ff:ff:ff:ff:ff")/ARP(pdst="192.168.1.0/24"), timeout=2)
+    return ans.summary(lambda s,r: r.sprintf("%Ether.src% %ARP.psrc%") )
+    # ans = arping(theip)
+    # return ans[0]
 
 
 # test = open("resultscan.txt", "w")
