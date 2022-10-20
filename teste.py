@@ -3,18 +3,18 @@ import ipaddress
 import netifaces
 from netaddr import IPAddress
 from scapy.all import *
+from datetime import date
 
 
 def pingpong(theip, myinterface):
-    arp = ARP(pdst=theip)
-    ans, unanswered = srp(Ether / arp, timeout=2, iface=myinterface, inter=0.1)
-   # ans, unans = arping(theip)
+    ans, unans = arping(theip)
     for sent, recieved in ans:
         test.write(recieved.summary() + "\n")
     return ""
 
-
-test = open("resultscan.txt", "w")
+today = date.today()
+print("Today's date:", today)
+test = open("resultscan.txt", "a")
 
 all_interface = netifaces.interfaces()
 print(all_interface)
@@ -22,7 +22,7 @@ interfaces = str(input())
 IpAddr = netifaces.ifaddresses(interfaces)[netifaces.AF_INET][0]['addr']
 Netmask = netifaces.ifaddresses(interfaces)[netifaces.AF_INET][0]['netmask']
 NetworkAdresse = ipaddress.ip_network(
-    IpAddr + '/'+str(IPAddress(Netmask).netmask_bits()), strict=False)
+    IpAddr + '/' + str(IPAddress(Netmask).netmask_bits()), strict=False)
 print(NetworkAdresse)
 print(pingpong(str(NetworkAdresse), str(interfaces)))
 
