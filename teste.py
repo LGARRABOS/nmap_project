@@ -26,6 +26,6 @@ print(pingpong(str(NetworkAdresse), str(interfaces)))
 
 test.close()
 
-result = open("resultscan.txt", "a")
+result = open("resultscan.txt", "r")
 print(result.read())
 result.close()
