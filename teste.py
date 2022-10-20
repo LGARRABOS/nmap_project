@@ -1,11 +1,10 @@
 # C:\Users\etien\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\python.exe
 import ipaddress
-import json
 import netifaces
 from netaddr import IPAddress
 from scapy.all import *
-from datetime import datetime
 import json
+import sys
 
 def startping():
     all_interface = netifaces.interfaces()
@@ -13,7 +12,7 @@ def startping():
     interfaces = str(input())
 
     while interfaces not in all_interface:
-        print("\nVous n'avez pas entré une interfaces valide")
+        print("\nYou did not enter a valid interface")
         all_interface = netifaces.interfaces()
         print(all_interface)
         interfaces = str(input())
@@ -29,11 +28,15 @@ def pingpong(theip):
     ans, unans = arping(theip)
     dict1 = {}
     compt = 0
+
     for sent, recieved in ans:
         dict1[compt] = recieved.summary()
         compt += 1
+
     save_value = json.dumps(dict1)
     return save_value
+
+print("test : ", sys.argv)
 
 IpReseauScan = startping()
 
