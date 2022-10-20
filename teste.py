@@ -13,6 +13,7 @@ def startping():
     interfaces = str(input())
 
     while interfaces not in all_interface:
+        print("\nVous n'avez pas entré une interfaces valide")
         all_interface = netifaces.interfaces()
         print(all_interface)
         interfaces = str(input())
