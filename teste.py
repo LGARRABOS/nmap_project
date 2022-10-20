@@ -9,7 +9,8 @@ import json
 
 
 def pingpong(theip):
-    ans, unans = sr(IP(dst=theip)/ICMP(), timeout=2)
+    ipping = theip.Split("/")
+    ans, unans = sr(IP(dst=ipping[0])/ICMP(), timeout=2)
     dict1 = {}
     compt = 0
     for sent, recieved in ans:
@@ -27,8 +28,7 @@ print(all_interface)
 interfaces = str(input())
 IpAddr = netifaces.ifaddresses(interfaces)[netifaces.AF_INET][0]['addr']
 Netmask = netifaces.ifaddresses(interfaces)[netifaces.AF_INET][0]['netmask']
-NetworkAdresse = ipaddress.ip_network(
-    IpAddr + '/' + str(IPAddress(Netmask).netmask_bits()), strict=False)
+NetworkAdresse = ipaddress.ip_network(IpAddr + '/' + str(IPAddress(Netmask).netmask_bits()), strict=False)
 print(NetworkAdresse)
 print(pingpong(str(NetworkAdresse)))
 
