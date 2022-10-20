@@ -6,8 +6,11 @@ from scapy.all import ICMP, sr, IP, srloop, send, arping
 
 
 def pingpong(theip):
-    arping(theip)
-    return
+    return arping(theip)
+    
+
+
+test = open("resultscan.txt", "w")
 
 all_interface=netifaces.interfaces()
 print(all_interface)
@@ -16,5 +19,6 @@ IpAddr = netifaces.ifaddresses(interfaces)[netifaces.AF_INET][0]['addr']
 Netmask = netifaces.ifaddresses(interfaces)[netifaces.AF_INET][0]['netmask']
 NetworkAdresse = ipaddress.ip_network(IpAddr + '/'+str(IPAddress(Netmask).netmask_bits()), strict=False)
 print(NetworkAdresse )
-pingpong(str(NetworkAdresse ))
 
+test.write(pingpong(str(NetworkAdresse)))
+print(test.read())
