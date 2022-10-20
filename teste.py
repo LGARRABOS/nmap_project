@@ -11,8 +11,8 @@ import json
 def pingpong(theip, myinterface):
     ans, unans = arping(theip)
     dict1 = {}
+    compt = 0
     for sent, recieved in ans:
-        compt = 0
         dict1[compt].append(str(recieved))
         compt += 1
     out_file = open("resultscan.txt", "w")
