@@ -11,7 +11,7 @@ import json
 def pingpong(theip, scaninterface):
     ether = Ether(dst="ff:ff:ff:ff:ff:ff")
     arp = ARP(pdst = theip)
-    answer, unanswered = srp(ether/arp, timeout = 2, iface = scaninterface, inter = 0.1)
+    ans, unanswered = srp(ether/arp, timeout = 2, iface = scaninterface, inter = 0.1)
     # ans, unans = arping(theip)
     dict1 = {}
     compt = 0
