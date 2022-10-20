@@ -1,5 +1,6 @@
 # C:\Users\etien\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\python.exe
 import ipaddress
+import json
 import netifaces
 from netaddr import IPAddress
 from scapy.all import *
@@ -10,9 +11,10 @@ import json
 def pingpong(theip, myinterface):
     ans, unans = arping(theip)
     dict1 = {}
+    compt = 0
     for sent, recieved in ans:
-        
-        dict1[value].append(str(recieved))
+        dict1[compt] = (str(recieved))
+        compt += 1
     out_file = open("resultscan.txt", "w")
     json.dump(dict1, out_file, indent=6)
     return ""
