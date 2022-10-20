@@ -7,7 +7,6 @@ from scapy.all import ICMP, sr, IP, srloop, send, arping, summary
 
 def pingpong(theip):
     ans =  arping(theip)
-    print(ans.summary(lambda s,r: r.sprintf("%IP.src% is alive") ))
     return ans.summary()
     
     
