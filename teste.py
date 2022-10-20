@@ -10,13 +10,14 @@ import json
 
 def pingpong(theip):
     ans, unans = sr(IP(dst="192.168.1.0/24")/ICMP(), timeout=3)
-    dict1 = {}
-    compt = 0
+    # dict1 = {}
+    # compt = 0
     for sent, recieved in ans:
-        dict1[compt] = recieved
-        compt += 1
-    out_file = open("resultscan.txt", "w")
-    print(json.dump(dict1, sort_keys=True, indent = 4))
+        # dict1[compt] = recieved
+        # compt += 1
+        print(recieved.summary())
+    # out_file = open("resultscan.txt", "w")
+    # print(json.dump(dict1, sort_keys=True, indent = 4))
     return ""
 
 
