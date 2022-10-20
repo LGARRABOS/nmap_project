@@ -6,25 +6,23 @@ from scapy.all import *
 
 
 def pingpong(theip):
-    ans =  arping(theip)
-    return ans
-    
-    
+    ans = arping(theip)
+    return ans.summary(lambda s, r: r.sprintf("%Ether.src% %ARP.psrc%"))
 
 
 # test = open("resultscan.txt", "w")
 
-all_interface=netifaces.interfaces()
+all_interface = netifaces.interfaces()
 print(all_interface)
 interfaces = str(input())
 IpAddr = netifaces.ifaddresses(interfaces)[netifaces.AF_INET][0]['addr']
 Netmask = netifaces.ifaddresses(interfaces)[netifaces.AF_INET][0]['netmask']
-NetworkAdresse = ipaddress.ip_network(IpAddr + '/'+str(IPAddress(Netmask).netmask_bits()), strict=False)
-print(NetworkAdresse )
-print(pingpong(str(NetworkAdresse )))
+NetworkAdresse = ipaddress.ip_network(
+    IpAddr + '/'+str(IPAddress(Netmask).netmask_bits()), strict=False)
+print(NetworkAdresse)
+print(pingpong(str(NetworkAdresse)))
 
 # test.write(str(pingpong(str(NetworkAdresse))))
 
 # result = open("resultscan.txt", "r")
 # print(result.read())
-
