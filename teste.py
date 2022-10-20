@@ -5,19 +5,19 @@ import netifaces
 from netaddr import IPAddress
 from scapy.all import *
 from datetime import datetime
+import json
 
 
 def pingpong(theip, myinterface):
     ans, unans = arping(theip)
+    dict1 = {}
     for sent, recieved in ans:
-        test.write(recieved.summary() + "\n")
+        dict.append(sent, recieved)
+    out_file = open("resultscan.txt", "w")
+    json.dump(dict1, out_file, indent = 6)
     return ""
 
-date = datetime.now()
-dt_string = date.strftime("%d/%m/%Y %H:%M:%S")
-
-test = open("resultscan.txt", "a")
-test.write("\n" + dt_string + "\n")
+test = open("resultscan.txt", "w")
 
 all_interface = netifaces.interfaces()
 print(all_interface)
