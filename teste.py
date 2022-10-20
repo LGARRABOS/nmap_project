@@ -16,7 +16,7 @@ def pingpong(theip):
         dict1[compt] = recieved.summary()
         compt += 1
         print(recieved.summary())
-    test = json.dump(dict1)
+    test = json.dumps(dict1)
     print(test)
     return dict1
 
