@@ -2,11 +2,11 @@
 import ipaddress
 import netifaces
 from netaddr import IPAddress
-from scapy.all import ICMP, sr, IP, srloop, send, arping, summary
+from scapy.all import ICMP, sr, IP, srloop, send, arping, ans
 
 
 def pingpong(theip):
-    ans =  arping(theip)
+    ans, unans =  arping(theip)
     print(ans.summary())
     
 
