@@ -8,6 +8,7 @@ from datetime import date
 
 def pingpong(theip, myinterface):
     ans, unans = arping(theip)
+    test.write("------------------------------------------------------" + "\n")
     for sent, recieved in ans:
         test.write(recieved.summary() + "\n")
     return ""
