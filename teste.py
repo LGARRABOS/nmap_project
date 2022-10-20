@@ -9,7 +9,6 @@ def pingpong(theip):
     ans, unans = arping(theip)
     for sent, recieved in ans:
         test.write(recieved.summary() + "\n")
-    test.read()
     return ""
 
 
@@ -25,6 +24,8 @@ NetworkAdresse = ipaddress.ip_network(
 print(NetworkAdresse)
 print(pingpong(str(NetworkAdresse)))
 
+test.close()
 
-# result = open("resultscan.txt", "r")
-# print(result.read())
+result = open("resultscan.txt", "r")
+print(result.read())
+result.close()
