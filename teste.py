@@ -29,7 +29,7 @@ NetworkIP = ipaddress.ip_network(
     IpAddr + '/' + str(IPAddress(Netmask).netmask_bits()), strict=False)
 print(NetworkIP)
 test = pingpong(str(NetworkIP))
-print(test)
+file.write(test)
 
 file.close()
 
