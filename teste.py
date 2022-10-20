@@ -6,8 +6,8 @@ from scapy.all import ICMP, sr, IP, srloop, send, arping
 
 
 def pingpong(theip):
-    res =  arping(theip)
-    return res
+    ans, unans =  arping(theip)
+    return ans, unans
     
 
 
