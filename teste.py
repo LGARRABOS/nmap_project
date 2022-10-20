@@ -29,8 +29,7 @@ Netmask = netifaces.ifaddresses(interfaces)[netifaces.AF_INET][0]['netmask']
 NetworkIP = ipaddress.ip_network(
     IpAddr + '/' + str(IPAddress(Netmask).netmask_bits()), strict=False)
 print(NetworkIP)
-save = pingpong(NetworkIP)
-test.write(save)
+print(pingpong(str(NetworkIP)))
 
 test.close()
 
