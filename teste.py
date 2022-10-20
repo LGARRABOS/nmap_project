@@ -13,12 +13,12 @@ def pingpong(theip):
     dict1 = {}
     compt = 0
     for sent, recieved in ans:
-        # dict1[compt] = recieved
-        # compt += 1
+        dict1[compt] = recieved
+        compt += 1
         print(recieved.summary())
     # out_file = open("resultscan.txt", "w")
     # print(json.dump(dict1, sort_keys=True, indent = 4))
-    return ""
+    return dict1
 
 
 test = open("resultscan.txt", "w")
@@ -30,7 +30,7 @@ IpAddr = netifaces.ifaddresses(interfaces)[netifaces.AF_INET][0]['addr']
 Netmask = netifaces.ifaddresses(interfaces)[netifaces.AF_INET][0]['netmask']
 NetworkIP = ipaddress.ip_network(IpAddr + '/' + str(IPAddress(Netmask).netmask_bits()), strict=False)
 print(NetworkIP)
-print(pingpong(str(NetworkIP)))
+print(str(pingpong(str(NetworkIP))))
 
 test.close()
 
