@@ -7,7 +7,8 @@ from scapy.all import *
 
 def pingpong(theip, myinterface):
     arp = ARP(pdst=theip)
-    ans, unanswered = srp(Ether / arp, timeout=2, iface=myinterface, inter=0.1)
+    ether = Ether(dst = "ff:ff:ff:ff:ff:ff")
+    ans, unanswered = srp(ether / arp, timeout=2, iface=myinterface, inter=0.1)
    # ans, unans = arping(theip)
     for sent, recieved in ans:
         test.write(recieved.summary() + "\n")
