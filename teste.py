@@ -6,6 +6,14 @@ from scapy.all import *
 import json
 import sys
 
+def help():
+    print("This program is a network scanner")
+    print("Programm command list:")
+    print(" -a          Make a ARP ping request on all the whole network and write result in file")
+    print(" -u          Make a UDP request to a specific Ip")
+    print(" -t          Make a TCP request to a specific Ip")
+
+
 
 def startping():
     all_interface = netifaces.interfaces()
@@ -26,7 +34,7 @@ def startping():
     return NetworkIP
 
 
-def pingpong(theip):
+def ArpPing(theip):
     ans, unans = arping(theip)
     dict1 = {}
     compt = 0
@@ -42,11 +50,14 @@ def pingpong(theip):
 if len(sys.argv) > 2 or "-" not in sys.argv[1] :
     sys.exit()
 
+if sys.argv[1] == "-h":
+    help()
+
 IpReseauScan = startping()
 
 file = open("resultscan.json", "w")
 
-test = pingpong(str(IpReseauScan))
+test = ArpPing(str(IpReseauScan))
 file.write(test)
 
 file.close()
