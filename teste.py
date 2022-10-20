@@ -18,7 +18,7 @@ def pingpong(theip):
     save_value = json.dumps(dict1)
     return save_value
 
-test = open("resultscan.txt", "w")
+file = open("resultscan.txt", "w")
 
 all_interface = netifaces.interfaces()
 print(all_interface)
@@ -31,7 +31,7 @@ print(NetworkIP)
 test = pingpong(str(NetworkIP))
 print(test)
 
-test.close()
+file.close()
 
 result = open("resultscan.txt", "r")
 print(result.read())
