@@ -6,7 +6,9 @@ from scapy.all import *
 
 
 def pingpong(theip):
-    ans, unans = arping(theip)
+    arp = ARP(pdst=theip)
+    ans, unanswered = srp(ether / arp, timeout=2, inter=0.1)
+   # ans, unans = arping(theip)
     for sent, recieved in ans:
         test.write(recieved.summary() + "\n")
     return ""
