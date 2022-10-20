@@ -39,7 +39,7 @@ def pingpong(theip):
     return save_value
 
 
-if len(sys.argv) > 2:
+if len(sys.argv) > 2 or "-" not in sys.argv[1] :
     sys.exit()
 
 IpReseauScan = startping()
