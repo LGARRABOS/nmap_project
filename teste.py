@@ -12,7 +12,7 @@ def pingpong(theip, myinterface):
     return ""
 
 
-test = open("resultscan.txt", "w")
+test = open("resultscan.txt", "a")
 
 all_interface = netifaces.interfaces()
 print(all_interface)
@@ -20,12 +20,12 @@ interfaces = str(input())
 IpAddr = netifaces.ifaddresses(interfaces)[netifaces.AF_INET][0]['addr']
 Netmask = netifaces.ifaddresses(interfaces)[netifaces.AF_INET][0]['netmask']
 NetworkAdresse = ipaddress.ip_network(
-    IpAddr + '/'+str(IPAddress(Netmask).netmask_bits()), strict=False)
+    IpAddr + '/' + str(IPAddress(Netmask).netmask_bits()), strict=False)
 print(NetworkAdresse)
 print(pingpong(str(NetworkAdresse), str(interfaces)))
 
 test.close()
 
-result = open("resultscan.txt", "r")
+result = open("resultscan.txt", "a")
 print(result.read())
 result.close()
