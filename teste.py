@@ -16,7 +16,7 @@ date = datetime.now()
 dt_string = date.strftime("%d/%m/%Y %H:%M:%S")
 
 test = open("resultscan.txt", "a")
-test.write("\n" + dt_string)
+test.write("\n" + dt_string + "\n")
 
 all_interface = netifaces.interfaces()
 print(all_interface)
