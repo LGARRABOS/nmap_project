@@ -10,7 +10,7 @@ def pingpong(theip):
     
 
 
-test = open("resultscan.txt", "w", "r")
+test = open("resultscan.txt", "w")
 
 all_interface=netifaces.interfaces()
 print(all_interface)
@@ -21,4 +21,6 @@ NetworkAdresse = ipaddress.ip_network(IpAddr + '/'+str(IPAddress(Netmask).netmas
 print(NetworkAdresse )
 
 test.write(str(pingpong(str(NetworkAdresse))))
-print(test.read())
+
+result = open("resultscan.txt", "r")
+print(result.read())
