@@ -13,10 +13,11 @@ def pingpong(theip):
     dict1 = {}
     compt = 0
     for sent, recieved in ans:
-        dict1[compt] = recieved
-        compt += 1
-    out_file = open("resultscan.txt", "w")
-    print(json.dump(dict1, sort_keys=True, indent = 4))
+        # dict1[compt] = recieved
+        # compt += 1
+        print(recieved.summary())
+    # out_file = open("resultscan.txt", "w")
+    # print(json.dump(dict1, sort_keys=True, indent = 4))
     return ""
 
 
