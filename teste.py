@@ -7,6 +7,22 @@ from scapy.all import *
 from datetime import datetime
 import json
 
+def startping():
+    all_interface = netifaces.interfaces()
+    print(all_interface)
+    interfaces = str(input())
+
+    while interfaces not in all_interface:
+        all_interface = netifaces.interfaces()
+        print(all_interface)
+        interfaces = str(input())
+    
+    IpAddr = netifaces.ifaddresses(interfaces)[netifaces.AF_INET][0]['addr']
+    Netmask = netifaces.ifaddresses(interfaces)[netifaces.AF_INET][0]['netmask']
+    NetworkIP = ipaddress.ip_network(IpAddr + '/' + str(IPAddress(Netmask).netmask_bits()), strict=False)
+    return NetworkIP
+
+
 
 def pingpong(theip):
     ans, unans = arping(theip)
@@ -18,17 +34,11 @@ def pingpong(theip):
     save_value = json.dumps(dict1)
     return save_value
 
+IpReseauScan = startping()
+
 file = open("resultscan.json", "w")
 
-all_interface = netifaces.interfaces()
-print(all_interface)
-interfaces = str(input())
-IpAddr = netifaces.ifaddresses(interfaces)[netifaces.AF_INET][0]['addr']
-Netmask = netifaces.ifaddresses(interfaces)[netifaces.AF_INET][0]['netmask']
-NetworkIP = ipaddress.ip_network(
-    IpAddr + '/' + str(IPAddress(Netmask).netmask_bits()), strict=False)
-print(NetworkIP)
-test = pingpong(str(NetworkIP))
+test = pingpong(str(IpReseauScan))
 file.write(test)
 
 file.close()
