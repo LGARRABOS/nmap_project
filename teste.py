@@ -1,11 +1,11 @@
 # C:\Users\etien\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\python.exe
 import ipaddress
-from tkinter import END
 import netifaces
 from netaddr import IPAddress
 from scapy.all import *
 import json
 import sys
+
 
 def startping():
     all_interface = netifaces.interfaces()
@@ -17,12 +17,13 @@ def startping():
         all_interface = netifaces.interfaces()
         print(all_interface)
         interfaces = str(input())
-    
-    IpAddr = netifaces.ifaddresses(interfaces)[netifaces.AF_INET][0]['addr']
-    Netmask = netifaces.ifaddresses(interfaces)[netifaces.AF_INET][0]['netmask']
-    NetworkIP = ipaddress.ip_network(IpAddr + '/' + str(IPAddress(Netmask).netmask_bits()), strict=False)
-    return NetworkIP
 
+    IpAddr = netifaces.ifaddresses(interfaces)[netifaces.AF_INET][0]['addr']
+    Netmask = netifaces.ifaddresses(
+        interfaces)[netifaces.AF_INET][0]['netmask']
+    NetworkIP = ipaddress.ip_network(
+        IpAddr + '/' + str(IPAddress(Netmask).netmask_bits()), strict=False)
+    return NetworkIP
 
 
 def pingpong(theip):
@@ -37,8 +38,9 @@ def pingpong(theip):
     save_value = json.dumps(dict1)
     return save_value
 
+
 if sys.argv.len > 2:
-    exit()
+    sys.exit()
 
 IpReseauScan = startping()
 
