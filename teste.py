@@ -8,8 +8,8 @@ from datetime import datetime
 import json
 
 
-def pingpong(theip, myinterface):
-    ans, unans = arping(theip)
+def pingpong(theip):
+    ans, unans = sr(IP(dst=theip)/ICMP(), timeout=2)
     dict1 = {}
     compt = 0
     for sent, recieved in ans:
@@ -30,7 +30,7 @@ Netmask = netifaces.ifaddresses(interfaces)[netifaces.AF_INET][0]['netmask']
 NetworkAdresse = ipaddress.ip_network(
     IpAddr + '/' + str(IPAddress(Netmask).netmask_bits()), strict=False)
 print(NetworkAdresse)
-print(pingpong(str(NetworkAdresse), str(interfaces)))
+print(pingpong(str(NetworkAdresse)))
 
 test.close()
 
