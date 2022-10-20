@@ -13,7 +13,7 @@ def pingpong(theip, myinterface):
     return ""
 
 date = datetime.now()
-dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+dt_string = date.strftime("%d/%m/%Y %H:%M:%S")
 
 test = open("resultscan.txt", "a")
 test.write("\n" + dt_string)
