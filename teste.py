@@ -8,7 +8,8 @@ from scapy.all import *
 def pingpong(theip):
     ans, unans = arping(theip)
     for sent, recieved in ans:
-        test.write(recieved.summary())
+        test.write(recieved.summary() + "\n")
+    test.read()
     return ""
 
 
@@ -25,5 +26,5 @@ print(NetworkAdresse)
 print(pingpong(str(NetworkAdresse)))
 
 
-result = open("resultscan.txt", "r")
-print(result.read())
+# result = open("resultscan.txt", "r")
+# print(result.read())
