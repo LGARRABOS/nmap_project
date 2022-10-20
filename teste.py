@@ -12,6 +12,7 @@ def help():
     print(" -a          Make a ARP ping request on all the whole network and write result in file")
     print(" -u          Make a UDP request to a specific Ip")
     print(" -t          Make a TCP request to a specific Ip")
+    sys.exit()
 
 
 
