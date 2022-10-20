@@ -6,7 +6,8 @@ from scapy.all import ICMP, sr, IP, srloop, send, arping
 
 
 def pingpong(theip):
-    return arping(theip)
+    res =  arping(theip)
+    return res
     
 
 
@@ -24,3 +25,4 @@ test.write(str(pingpong(str(NetworkAdresse))))
 
 result = open("resultscan.txt", "r")
 print(result.read())
+print(res)
