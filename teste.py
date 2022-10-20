@@ -1,5 +1,6 @@
 # C:\Users\etien\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\python.exe
 import ipaddress
+import json
 import netifaces
 from netaddr import IPAddress
 from scapy.all import *
