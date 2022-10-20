@@ -1,5 +1,6 @@
 # C:\Users\etien\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\python.exe
 import ipaddress
+from tkinter import END
 import netifaces
 from netaddr import IPAddress
 from scapy.all import *
@@ -36,7 +37,8 @@ def pingpong(theip):
     save_value = json.dumps(dict1)
     return save_value
 
-print("test : ", sys.argv)
+if sys.argv.len > 2:
+    sys.exit()
 
 IpReseauScan = startping()
 
