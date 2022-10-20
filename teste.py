@@ -7,7 +7,7 @@ from scapy.all import *
 
 def pingpong(theip):
     ans = arping(theip)
-    return ans.summary(lambda s, r: r.sprintf("%Ether.src% %ARP.psrc%"))
+    return ans["other"]
 
 
 # test = open("resultscan.txt", "w")
