@@ -3,7 +3,7 @@ import ipaddress
 import netifaces
 from netaddr import IPAddress
 from scapy.all import *
-from datetime import date
+from datetime import datetime
 
 
 def pingpong(theip, myinterface):
@@ -12,9 +12,11 @@ def pingpong(theip, myinterface):
         test.write(recieved.summary() + "\n")
     return ""
 
-today = date.today()
-print("Today's date:", today)
+date = datetime.now()
+dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+
 test = open("resultscan.txt", "a")
+test.write("\n" + dt_string)
 
 all_interface = netifaces.interfaces()
 print(all_interface)
