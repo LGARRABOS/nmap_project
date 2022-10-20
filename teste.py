@@ -5,9 +5,6 @@ from netaddr import IPAddress
 from scapy.all import *
 
 
-
-
-
 test = open("resultscan.txt", "w")
 
 all_interface = netifaces.interfaces()
