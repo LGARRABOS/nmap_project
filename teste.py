@@ -2,7 +2,7 @@
 import ipaddress
 import netifaces
 from netaddr import IPAddress
-from scapy.all import ICMP, sr, IP, srloop, send, arping
+from scapy.all import ICMP, sr, IP, srloop, send, arping, summary
 
 
 def pingpong(theip):
@@ -13,7 +13,7 @@ def pingpong(theip):
     
 
 
-test = open("resultscan.txt", "w")
+# test = open("resultscan.txt", "w")
 
 all_interface=netifaces.interfaces()
 print(all_interface)
@@ -28,6 +28,4 @@ pingpong(str(NetworkAdresse ))
 
 # result = open("resultscan.txt", "r")
 # print(result.read())
-print(str(pingpong(str(NetworkAdresse))))
-
 
