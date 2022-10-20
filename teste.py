@@ -15,10 +15,8 @@ def pingpong(theip):
     for sent, recieved in ans:
         dict1[compt] = recieved.summary()
         compt += 1
-        print(recieved.summary())
     test = json.dumps(dict1)
-    print(test)
-    return dict1
+    return test
 
 
 test = open("resultscan.txt", "w")
@@ -31,7 +29,7 @@ Netmask = netifaces.ifaddresses(interfaces)[netifaces.AF_INET][0]['netmask']
 NetworkIP = ipaddress.ip_network(
     IpAddr + '/' + str(IPAddress(Netmask).netmask_bits()), strict=False)
 print(NetworkIP)
-print(str(pingpong(str(NetworkIP))))
+test.write(pingpong(NetworkIP))
 
 test.close()
 
