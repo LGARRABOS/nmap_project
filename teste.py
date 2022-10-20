@@ -5,14 +5,10 @@ from netaddr import IPAddress
 from scapy.all import *
 
 
-def pingpong(theip):
-    ans, unans = srp(Ether(dst="ff:ff:ff:ff:ff:ff")/ARP(pdst="192.168.1.0/24"), timeout=2)
-    return ans.summary(lambda s,r: r.sprintf("%Ether.src% %ARP.psrc%") )
-    # ans = arping(theip)
-    # return ans[0]
 
 
-# test = open("resultscan.txt", "w")
+
+test = open("resultscan.txt", "w")
 
 all_interface = netifaces.interfaces()
 print(all_interface)
@@ -22,9 +18,8 @@ Netmask = netifaces.ifaddresses(interfaces)[netifaces.AF_INET][0]['netmask']
 NetworkAdresse = ipaddress.ip_network(
     IpAddr + '/'+str(IPAddress(Netmask).netmask_bits()), strict=False)
 print(NetworkAdresse)
-print(pingpong(str(NetworkAdresse)))
 
-# test.write(str(pingpong(str(NetworkAdresse))))
+test.write(arping(NetworkAdresse))
 
-# result = open("resultscan.txt", "r")
-# print(result.read())
+result = open("resultscan.txt", "r")
+print(result.read())
