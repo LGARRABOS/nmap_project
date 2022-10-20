@@ -7,7 +7,7 @@ from scapy.all import *
 
 def pingpong(theip):
     ans = arping(theip)
-    return ans[0][3]
+    return ans[0]
 
 
 # test = open("resultscan.txt", "w")
