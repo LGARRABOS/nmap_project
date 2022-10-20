@@ -10,7 +10,7 @@ def pingpong(theip):
     
 
 
-test = open("resultscan.txt", "w")
+test = open("resultscan.txt", "w", "r")
 
 all_interface=netifaces.interfaces()
 print(all_interface)
