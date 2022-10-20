@@ -12,7 +12,7 @@ def pingpong(theip, myinterface):
     ans, unans = arping(theip)
     dict1 = {}
     for sent, recieved in ans:
-        dict[sent].append(recieved)
+        dict1[sent].append(recieved)
     out_file = open("resultscan.txt", "w")
     json.dump(dict1, out_file, indent = 6)
     return ""
