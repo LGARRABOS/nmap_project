@@ -21,7 +21,7 @@ IpAddr = netifaces.ifaddresses(interfaces)[netifaces.AF_INET][0]['addr']
 Netmask = netifaces.ifaddresses(interfaces)[netifaces.AF_INET][0]['netmask']
 NetworkAdresse = ipaddress.ip_network(IpAddr + '/'+str(IPAddress(Netmask).netmask_bits()), strict=False)
 print(NetworkAdresse )
-pingpong(str(NetworkAdresse ))
+print(pingpong(str(NetworkAdresse )))
 
 # test.write(str(pingpong(str(NetworkAdresse))))
 
