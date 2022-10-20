@@ -19,7 +19,7 @@ NetworkAdresse = ipaddress.ip_network(
     IpAddr + '/'+str(IPAddress(Netmask).netmask_bits()), strict=False)
 print(NetworkAdresse)
 
-test.write(arping(str(NetworkAdresse)))
+test.write(str(arping(str(NetworkAdresse))))
 
 result = open("resultscan.txt", "r")
 print(result.read())
