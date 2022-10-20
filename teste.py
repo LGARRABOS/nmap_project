@@ -5,9 +5,9 @@ from netaddr import IPAddress
 from scapy.all import *
 
 
-def pingpong(theip):
+def pingpong(theip, myinterface):
     arp = ARP(pdst=theip)
-    ans, unanswered = srp(ether / arp, timeout=2)
+    ans, unanswered = srp(ether / arp, timeout=2, iface=myinterface, inter=0.1)
    # ans, unans = arping(theip)
     for sent, recieved in ans:
         test.write(recieved.summary() + "\n")
@@ -24,7 +24,7 @@ Netmask = netifaces.ifaddresses(interfaces)[netifaces.AF_INET][0]['netmask']
 NetworkAdresse = ipaddress.ip_network(
     IpAddr + '/'+str(IPAddress(Netmask).netmask_bits()), strict=False)
 print(NetworkAdresse)
-print(pingpong(str(NetworkAdresse)))
+print(pingpong(str(NetworkAdresse, interfaces)))
 
 test.close()
 
