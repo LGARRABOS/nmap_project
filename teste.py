@@ -21,8 +21,8 @@ Netmask = netifaces.ifaddresses(interfaces)[netifaces.AF_INET][0]['netmask']
 NetworkAdresse = ipaddress.ip_network(IpAddr + '/'+str(IPAddress(Netmask).netmask_bits()), strict=False)
 print(NetworkAdresse )
 
-test.write(str(pingpong(str(NetworkAdresse))))
+# test.write(str(pingpong(str(NetworkAdresse))))
 
-result = open("resultscan.txt", "r")
-print(result.read())
-print(res)
+# result = open("resultscan.txt", "r")
+# print(result.read())
+print(str(pingpong(str(NetworkAdresse))))
