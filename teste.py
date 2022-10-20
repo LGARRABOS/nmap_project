@@ -53,16 +53,21 @@ if len(sys.argv) > 2 or "-" not in sys.argv[1] :
 
 if sys.argv[1] == "-h":
     help()
+elif sys.argv[1] == "-a":
+    IpReseauScan = startping()
+    file = open("resultscan.json", "w")
+    test = ArpPing(str(IpReseauScan))
+    file.write(test)
 
-IpReseauScan = startping()
+    file.close()
 
-file = open("resultscan.json", "w")
+    result = open("resultscan.json", "r")
+    print(result.read())
+    result.close()
 
-test = ArpPing(str(IpReseauScan))
-file.write(test)
 
-file.close()
 
-result = open("resultscan.json", "r")
-print(result.read())
-result.close()
+
+
+
+
