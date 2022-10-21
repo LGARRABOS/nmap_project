@@ -13,7 +13,7 @@ def help():
     print("Programm command list:")
     print(" -h          Gives access to the list of commands and their uses.")
     print(" -a          Make a ARP ping request on all the whole network and write result in file")
-    #print(" -u          Make a UDP request to a specific Ip"), 143, 161, 162, 427, 548, 631, 647, 706, 853, 989, 990
+    #print(" -u          Make a UDP request to a specific Ip"), , 647, 706, 853, 989, 990
     print(" -t          Make a TCP request to a specific Ip")
     sys.exit()
 
@@ -55,15 +55,19 @@ def TCPPing(Ip):
     # ans, unans = sr( IP(dst=Ip)/TCP(dport=80, flags="S") )
     # for sent, recieved in ans:
     #     print(recieved.summary())
-    tabImportantPort = [20, 21, 22, 25, 35, 38, 57, 80]
+    tabImportantPort = [20, 21, 22, 25, 35, 38, 57]
     for value in tabImportantPort:
         print(value)
-        try:
-            ans, unans = sr( IP(dst=Ip)/TCP(dport=value, flags="S") )
-        except socket.gaierror:
-            raise ValueError('Hostname {} could not be resolved.'.format(ip))
+        ans, unans = sr( IP(dst=Ip)/TCP(dport=value, flags="S") )
         for sent, recieved in ans:
             print(recieved.summary())
+    tabPort2 = [80, 143, 161, 162, 427, 548, 631]
+    for value in tabPort2:
+        print(value)
+        ans, unans = sr( IP(dst=Ip)/TCP(dport=value, flags="S") )
+        for sent, recieved in ans:
+            print(recieved.summary())
+
     
 
 
