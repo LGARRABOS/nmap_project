@@ -51,6 +51,8 @@ def ArpPing(theip):
     save_value = json.dumps(dict1)
     return save_value
 
+if sys.argv == [0]:
+    help()
 
 if len(sys.argv) > 2 or "-" not in sys.argv[1] :
     print("Invalid argument")
