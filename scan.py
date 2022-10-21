@@ -62,7 +62,26 @@ if sys.argv[1] == "-h":
     help()
 elif sys.argv[1] == "-a":
     if(os.path.exists(scanInterface + ".json")):
-       print("A scan of ")
+        new_scan =""
+        print("A scan of this interface already exists. Do you want to make a new one?  y/n, ")
+        new_scan = str(input())
+        while(new_scan == "y" |"n" ):
+            print("invalid argument")
+        if(new_scan == "y"):
+            IpReseauScan = startFirstScanping(interfaces)
+            file = open( interfaces + ".json", "w")
+            test = ArpPing(str(IpReseauScan))
+            file.write(test)
+
+            file.close()
+
+            result = open(interfaces + ".json", "r")
+            print(result.read())
+            result.close()
+        else:
+            result = open(interfaces + ".json", "r")
+            print(result.read())
+            result.close()
     else:
         IpReseauScan = startFirstScanping(scanInterface)
         file = open( scanInterface + ".json", "w")
