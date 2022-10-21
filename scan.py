@@ -1,6 +1,5 @@
 # C:\Users\etien\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\python.exe
 import ipaddress
-from telnetlib import IP
 import netifaces
 from netaddr import IPAddress
 from scapy.all import *
@@ -54,11 +53,7 @@ def ArpPing(theip):
     return save_value
 
 def TCPPing(Ip):
-    try:
-        sync = sr( IP(dst=Ip)/TCP(dport=[20, 21, 22, 25, 35, 38, 57, 80, 143, 161, 162, 427, 548, 631, 647, 706, 853, 989, 990], flags="S") )
-    except socket.gaierror:
-        raise ValueError('Hostname {} could not be resolved.'.format(Ip))
-    ans, _ = sr(sync, timeout=2, retry = 1)
+    ans, unans = sr( IP(dst=Ip)/TCP(dport=[20, 21, 22, 25, 35, 38, 57, 80, 143, 161, 162, 427, 548, 631, 647, 706, 853, 989, 990], flags="S") )
     for sent, recieved in ans:
         print(recieved.summary())
 
@@ -125,7 +120,6 @@ elif sys.argv[1] == "-t":
     TCPPing(IpPingTCP)
 
 elif sys.argv[1] == "-os":
-    os = ''
     target = input("Enter the Ip address:")
     pack = IP(dst=target)/ICMP()
     resp = sr1(pack, timeout=3)
@@ -140,6 +134,5 @@ elif sys.argv[1] == "-os":
                 os = "Cisco Routeur"
             else:
                 print("Not Found")
-            print("TTL = " + ttl)
-            print(os + " is detected in " + IP)
+            print(f'\n\nTTL = {ttl} \n*{os}* Operating System is Detected \n\n')
 
