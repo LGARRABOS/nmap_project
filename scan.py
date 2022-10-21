@@ -51,18 +51,17 @@ def ArpPing(theip):
     return save_value
 
 def TCPPing(Ip):
-    # ans, unans = sr( IP(dst=Ip)/TCP(dport=80, flags="S") )
-    # for sent, recieved in ans:
-    #     print(recieved.summary())
-    tabImportantPort = [20, 21, 22, 25, 35, 38, 80]
-    for value in tabImportantPort:
+
+    Port = [20, 22, 25, 35, 38, 80, 21]
+    Port = [10,11,12,13,14,15,16]
+    for value in Port:
         print(value)
         ans, unans = sr( IP(dst=Ip)/TCP(dport=value, flags="S") )
         for sent, recieved in ans:
             print(recieved.summary())
 
 if len(sys.argv)  == 1:
-    print("Inavlid command")
+    print("Invalid command")
     help()
 
 
