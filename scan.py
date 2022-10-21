@@ -61,9 +61,8 @@ scanInterface = askForInterface()
 if sys.argv[1] == "-h":
     help()
 elif sys.argv[1] == "-a":
-    
     if(os.path.exists(scanInterface + ".json")):
-       print("already exist")
+       print("A scan of ")
     else:
         IpReseauScan = startFirstScanping(scanInterface)
         file = open( scanInterface + ".json", "w")
@@ -75,3 +74,6 @@ elif sys.argv[1] == "-a":
         result = open(scanInterface + ".json", "r")
         print(result.read())
         result.close()
+elif sys.argv[1] == "-u":
+    print("Enter the Ip")
+
