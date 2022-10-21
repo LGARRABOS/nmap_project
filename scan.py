@@ -65,6 +65,9 @@ elif sys.argv[1] == "-a":
         new_scan =""
         print("A scan of this interface already exists. Do you want to make a new one?  y/n, ")
         new_scan = input()
+        while new_scan != "y" and new_scan != "n":
+            print("A scan of this interface already exists. Do you want to make a new one?  y/n, ")
+            new_scan = input()
         if new_scan == "y":
             IpReseauScan = startFirstScanping(scanInterface)
             file = open( scanInterface + ".json", "w")
