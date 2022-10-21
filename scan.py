@@ -60,7 +60,8 @@ def TCPPing(Ip):
         print("Enter the port you want to scan. (Max 7)")
         Port = input()
         Port = Port.split(", ")
-    ans, unans = sr( IP(dst=Ip)/TCP(dport=int(Port), flags="S") )
+    for value in Port:
+        ans, unans = sr( IP(dst=Ip)/TCP(dport=int(value), flags="S") )
     
     for sent, recieved in ans:
         print(recieved.summary())
