@@ -13,7 +13,7 @@ def help():
     print("Programm command list:")
     print(" -h          Gives access to the list of commands and their uses.")
     print(" -a          Make a ARP ping request on all the whole network and write result in file")
-    #print(" -u          Make a UDP request to a specific Ip")
+    #print(" -u          Make a UDP request to a specific Ip"), 143, 161, 162, 427, 548, 631, 647, 706, 853, 989, 990
     print(" -t          Make a TCP request to a specific Ip")
     sys.exit()
 
@@ -52,7 +52,7 @@ def ArpPing(theip):
     return save_value
 
 def TCPPing(Ip):
-    tabImportantPort = [20, 21, 22, 25, 35, 38, 57, 143, 161, 162, 427, 548, 631, 647, 706, 853, 989, 990]
+    tabImportantPort = [20, 21, 22, 25, 35, 38, 57]
     for value in tabImportantPort:
         print(value)
         ans, unans = sr( IP(dst=Ip)/TCP(dport=value, flags="S") )
