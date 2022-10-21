@@ -1,5 +1,6 @@
 # C:\Users\etien\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\python.exe
 import ipaddress
+from telnetlib import IP
 import netifaces
 from netaddr import IPAddress
 from scapy.all import *
@@ -127,11 +128,14 @@ elif sys.argv[1] == "-os":
     if resp:
         if IP in resp:
             ttl = resp.getlayer(IP).ttl
-            if ttl <= 64: 
-                os = 'Linux'
-            elif ttl > 64:
-                os = 'Windows'
+            if ttl == 64: 
+                os = "Linux"
+            elif ttl == 128:
+                os = "Windows"
+            elif ttl == 255:
+                os = "Cisco Routeur"
             else:
-                print('Not Found')
-            print(f'\n\nTTL = {ttl} \n*{os}* Operating System is Detected \n\n')
+                print("Not Found")
+            print("TTL = " + ttl)
+            print(os + " is detected in " + IP)
 
