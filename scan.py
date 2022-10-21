@@ -62,9 +62,9 @@ def TCPPing(Ip):
         Port = Port.split(",")
     for value in Port:
         ans, unans = sr( IP(dst=Ip)/TCP(dport=int(value), flags="S") )
-    
-    for sent, recieved in ans:
-        print(recieved.summary())
+        for sent, recieved in ans:
+            print(recieved.summary())
+
 
 if len(sys.argv)  == 1:
     print("Invalid command")
