@@ -58,10 +58,6 @@ def TCPPing(Ip):
         ans, unans = sr( IP(dst=Ip)/TCP(dport=value) )
         for sent, recieved in ans:
             print(recieved.summary())
-    
-
-
-
 
 if len(sys.argv)  == 1:
     print("Inavlid command")
