@@ -53,11 +53,15 @@ def ArpPing(theip):
     return save_value
 
 def TCPPing(Ip):
-    try:
-        sync = sr( IP(dst=Ip)/TCP(dport=[20, 21, 22, 25, 35, 38, 57, 80, 143, 161, 162, 427, 548, 631, 647, 706, 853, 989, 990], flags="S") )
-    except socket.gaierror:
-        raise ValueError('Hostname {} could not be resolved.'.format(Ip))
-    ans, _ = sr(sync, timeout=2, retry = 1)
+    print("Enter the port you want to scan. (Max 7)")
+    Port = input()
+    Port = Port.split(", ")
+    while len(Port) > 7:
+        print("Enter the port you want to scan. (Max 7)")
+        Port = input()
+        Port = Port.split(", ")
+    ans, unans = sr( IP(dst=Ip)/TCP(dport=Port, flags="S") )
+    
     for sent, recieved in ans:
         print(recieved.summary())
 
