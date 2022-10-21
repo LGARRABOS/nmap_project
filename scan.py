@@ -52,10 +52,10 @@ def ArpPing(theip):
     return save_value
 
 def TCPPing(Ip):
-    tabImportantPort = [20, 21, 22, 25, 35, 38, 57, 80]
+    tabImportantPort = [20, 21, 22, 25, 35, 38, 57]
     for value in tabImportantPort:
         print(value)
-        ans, unans = sr( IP(dst=Ip)/TCP(dport=value, flags="S") )
+        ans, unans = sr( IP(dst=Ip)/TCP(dport=80, flags="S") )
         for sent, recieved in ans:
             print(recieved.summary())
     
