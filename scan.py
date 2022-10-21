@@ -60,15 +60,10 @@ def TCPPing(Ip):
         print("Enter the port you want to scan. (Max 7)")
         Port = input()
         Port = Port.split(", ")
-    ans, unans = sr( IP(dst=Ip)/TCP(dport=Port, flags="S") )
+    ans, unans = sr( IP(dst=Ip)/TCP(dport=int(Port), flags="S") )
     
     for sent, recieved in ans:
         print(recieved.summary())
-
-    
-
-
-
 
 if len(sys.argv)  == 1:
     print("Invalid command")
