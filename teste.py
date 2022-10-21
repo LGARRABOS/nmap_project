@@ -56,11 +56,12 @@ if len(sys.argv) > 2 or "-" not in sys.argv[1] :
     print("Invalid argument")
     sys.exit()
 
+scanInterface = askForInterface()
+
 if sys.argv[1] == "-h":
     help()
 elif sys.argv[1] == "-a":
-    scanInterface = askForInterface()
-
+    
     if(os.path.exists(scanInterface + ".json")):
        print("already exist")
     else:
