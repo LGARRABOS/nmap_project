@@ -14,8 +14,8 @@ def help():
     print(" -h          Gives access to the list of commands and their uses.")
     print(" -a          Make a ARP ping request on all the whole network and write result in file")
     #print(" -u          Make a UDP request to a specific Ip"), 
-    print(" -t          Make a TCP request to a specific Ip")
-    print(" -os          Make a TCP request to a specific Ip")
+    print(" -t          Gives from a list of ports the services that listen behind.")
+    print(" -os         Make a TCP request to a specific Ip")
     sys.exit()
 
 def askForInterface():
@@ -92,9 +92,7 @@ elif sys.argv[1] == "-a":
             file = open( scanInterface + ".json", "w")
             test = ArpPing(str(IpReseauScan))
             file.write(test)
-
             file.close()
-
             result = open(scanInterface + ".json", "r")
             print(result.read())
             result.close()
@@ -107,9 +105,7 @@ elif sys.argv[1] == "-a":
         file = open( scanInterface + ".json", "w")
         test = ArpPing(str(IpReseauScan))
         file.write(test)
-
         file.close()
-
         result = open(scanInterface + ".json", "r")
         print(result.read())
         result.close()
