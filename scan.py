@@ -53,7 +53,7 @@ def ArpPing(theip):
 
 def TCPPing(Ip):
 
-    Port = [20, 22, 25, 35, 38, 80, 647]
+    Port = [20, 22, 25, 35, 38, 80, 21, 647]
     for value in Port:
         print(value)
         ans, unans = sr( IP(dst=Ip)/TCP(dport=value, flags="S") )
