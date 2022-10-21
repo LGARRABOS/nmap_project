@@ -11,6 +11,7 @@ def help():
     print("This program is a network scanner")
     print("You have to run this program as root")
     print("Programm command list:")
+    print(" -h          Gives access to the list of commands and their uses.")
     print(" -a          Make a ARP ping request on all the whole network and write result in file")
     print(" -u          Make a UDP request to a specific Ip")
     print(" -t          Make a TCP request to a specific Ip")
@@ -42,6 +43,7 @@ def ArpPing(theip):
 
 
 if len(sys.argv) > 2 or "-" not in sys.argv[1] :
+    print("Invalid argument")
     sys.exit()
 
 if sys.argv[1] == "-h":
