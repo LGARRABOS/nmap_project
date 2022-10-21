@@ -38,7 +38,6 @@ def startFirstScanping(interface):
         IpAddr + '/' + str(IPAddress(Netmask).netmask_bits()), strict=False)
     return NetworkIP
 
-
 def ArpPing(theip):
     ans, unans = arping(theip)
     dict1 = {}
