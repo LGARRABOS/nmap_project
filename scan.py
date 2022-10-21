@@ -107,4 +107,12 @@ elif sys.argv[1] == "-u":
         IpPingUdp = input()
         TryIp = IpPingUdp.Split(".")
     print("lol")
-
+elif sys.argv[1] == "-t":
+    print("Enter the Ip")
+    IpPingTCP = input()
+    TryIp = IpPingTCP.Split(".")
+    while len(TryIp) > 4 or "/" in IpPingTCP: 
+        print("Enter valid Ip")
+        IpPingTCP = input()
+        TryIp = IpPingTCP.Split(".")
+    
