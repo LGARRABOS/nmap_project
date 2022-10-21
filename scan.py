@@ -65,7 +65,7 @@ elif sys.argv[1] == "-a":
         new_scan =""
         print("A scan of this interface already exists. Do you want to make a new one?  y/n, ")
         new_scan = str(input())
-        while(new_scan == "y" |"n" ):
+        while(new_scan == "y" or new_scan == "n" ):
             print("invalid argument")
         if(new_scan == "y"):
             IpReseauScan = startFirstScanping(scanInterface)
