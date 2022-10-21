@@ -55,9 +55,9 @@ def TCPPing(Ip):
     tabImportantPort = [20, 21, 22, 25, 35, 38, 57, 67, 68, 80, 143, 161, 162, 427, 548, 631, 647, 706, 853, 989, 990]
     for value in tabImportantPort:
         print(value)
-        # ans, unans = sr( IP(dst=Ip)/TCP(dport=value) )
-        # for sent, recieved in ans:
-        #     print(recieved.summary())
+        ans, unans = sr( IP(dst=Ip)/TCP(dport=value) )
+        for sent, recieved in ans:
+            print(recieved.summary())
     
 
 
