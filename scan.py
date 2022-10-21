@@ -59,7 +59,23 @@ elif sys.argv[1] == "-a":
         print(all_interface)
         interfaces = str(input())
     if(os.path.exists(interfaces+".json")):
-       print("already exist")
+       print("A scan of this interface already exists. Do you want to make a new one?  y/n, ")
+       new_scan = str(input())
+       if(new_scan == "y"):
+        IpReseauScan = startFirstScanping(interfaces)
+        file = open( interfaces + ".json", "w")
+        test = ArpPing(str(IpReseauScan))
+        file.write(test)
+
+        file.close()
+
+        result = open(interfaces + ".json", "r")
+        print(result.read())
+        result.close()
+       else:
+        result = open(interfaces + ".json", "r")
+        print(result.read())
+        result.close()
     else:
         IpReseauScan = startFirstScanping(interfaces)
         file = open( interfaces + ".json", "w")
