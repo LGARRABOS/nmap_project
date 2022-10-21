@@ -5,6 +5,7 @@ from netaddr import IPAddress
 from scapy.all import *
 import json
 import sys
+import os
 
 def help():
     print("This program is a network scanner")
@@ -17,20 +18,11 @@ def help():
 
 
 
-def startping():
-    all_interface = netifaces.interfaces()
-    print(all_interface)
-    interfaces = str(input())
+def startFirstScanping(interface):
 
-    while interfaces not in all_interface:
-        print("\nYou did not enter a valid interface")
-        all_interface = netifaces.interfaces()
-        print(all_interface)
-        interfaces = str(input())
-
-    IpAddr = netifaces.ifaddresses(interfaces)[netifaces.AF_INET][0]['addr']
+    IpAddr = netifaces.ifaddresses(interface)[netifaces.AF_INET][0]['addr']
     Netmask = netifaces.ifaddresses(
-        interfaces)[netifaces.AF_INET][0]['netmask']
+        interface)[netifaces.AF_INET][0]['netmask']
     NetworkIP = ipaddress.ip_network(
         IpAddr + '/' + str(IPAddress(Netmask).netmask_bits()), strict=False)
     return NetworkIP
@@ -55,8 +47,19 @@ if len(sys.argv) > 2 or "-" not in sys.argv[1] :
 if sys.argv[1] == "-h":
     help()
 elif sys.argv[1] == "-a":
-    IpReseauScan = startping()
-    file = open("resultscan.json", "w")
+    all_interface = netifaces.interfaces()
+    print(all_interface)
+    interfaces = str(input())
+
+    while interfaces not in all_interface:
+        print("\nYou did not enter a valid interface")
+        all_interface = netifaces.interfaces()
+        print(all_interface)
+        interfaces = str(input())
+    if(os.path.exists(interfaces+".json")):
+       IpReseauScan = startFirstScanping(interfaces)
+
+    file = open( interfaces + ".json", "w")
     test = ArpPing(str(IpReseauScan))
     file.write(test)
 
