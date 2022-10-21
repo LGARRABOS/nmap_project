@@ -66,13 +66,6 @@ elif sys.argv[1] == "-a":
 
         file.close()
 
-        result = open("resultscan.json", "r")
+        result = open(interfaces + ".json", "r")
         print(result.read())
         result.close()
-
-
-
-
-
-
-
