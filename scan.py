@@ -52,11 +52,12 @@ def ArpPing(theip):
     return save_value
 
 if len(sys.argv)  == 1:
+    print("Inavlid command")
     help()
 
 if len(sys.argv) > 2 or "-" not in sys.argv[1] :
+    print("Inavlid argument")
     help()
-    sys.exit()
 
 scanInterface = askForInterface()
 
