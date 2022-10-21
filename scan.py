@@ -15,6 +15,7 @@ def help():
     print(" -a          Make a ARP ping request on all the whole network and write result in file")
     #print(" -u          Make a UDP request to a specific Ip"), , 647, 706, 853, 989, 990
     print(" -t          Make a TCP request to a specific Ip")
+    print(" -os          Make a TCP request to a specific Ip")
     sys.exit()
 
 def askForInterface():
@@ -116,4 +117,20 @@ elif sys.argv[1] == "-t":
         IpPingTCP = input()
         TryIp = IpPingTCP.split(".")
     TCPPing(IpPingTCP)
+
+elif sys.argv[1] == "-os":
+    os = ''
+    target = input("Enter the Ip address:")
+    pack = IP(dst=target)/ICMP()
+    resp = sr1(pack, timeout=3)
+    if resp:
+        if IP in resp:
+            ttl = resp.getlayer(IP).ttl
+            if ttl <= 64: 
+                os = 'Linux'
+            elif ttl > 64:
+                os = 'Windows'
+            else:
+                print('Not Found')
+            print(f'\n\nTTL = {ttl} \n*{os}* Operating System is Detected \n\n')
 
