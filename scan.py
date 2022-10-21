@@ -17,7 +17,17 @@ def help():
     print(" -t          Make a TCP request to a specific Ip")
     sys.exit()
 
+def askForInterface():
+    all_interface = netifaces.interfaces()
+    print(all_interface)
+    interfaces = str(input())
 
+    while interfaces not in all_interface:
+        print("\nYou did not enter a valid interface")
+        all_interface = netifaces.interfaces()
+        print(all_interface)
+        interfaces = str(input())
+    return interfaces 
 
 def startFirstScanping(interface):
 
@@ -46,25 +56,19 @@ if len(sys.argv) > 2 or "-" not in sys.argv[1] :
     print("Invalid argument")
     sys.exit()
 
+scanInterface = askForInterface()
+
 if sys.argv[1] == "-h":
     help()
 elif sys.argv[1] == "-a":
-    all_interface = netifaces.interfaces()
-    print(all_interface)
-    interfaces = str(input())
-
-    while interfaces not in all_interface:
-        print("\nYou did not enter a valid interface")
-        all_interface = netifaces.interfaces()
-        print(all_interface)
-        interfaces = str(input())
-    if(os.path.exists(interfaces+".json")):
-       new_scan =""
-       print("A scan of this interface already exists. Do you want to make a new one?  y/n, ")
-       new_scan = str(input())
-       while(new_scan == "y" |"n" ):
+    
+    if(os.path.exists(scanInterface + ".json")):
+        new_scan =""
+        print("A scan of this interface already exists. Do you want to make a new one?  y/n, ")
+        new_scan = str(input())
+        while(new_scan == "y" |"n" ):
             print("invalid argument")
-       if(new_scan == "y"):
+        if(new_scan == "y"):
             IpReseauScan = startFirstScanping(interfaces)
             file = open( interfaces + ".json", "w")
             test = ArpPing(str(IpReseauScan))
@@ -75,18 +79,23 @@ elif sys.argv[1] == "-a":
             result = open(interfaces + ".json", "r")
             print(result.read())
             result.close()
-    else:
+        else:
             result = open(interfaces + ".json", "r")
             print(result.read())
             result.close()
     else:
-        IpReseauScan = startFirstScanping(interfaces)
-        file = open( interfaces + ".json", "w")
+        IpReseauScan = startFirstScanping(scanInterface)
+        file = open( scanInterface + ".json", "w")
         test = ArpPing(str(IpReseauScan))
         file.write(test)
 
         file.close()
 
-        result = open(interfaces + ".json", "r")
+        result = open(scanInterface + ".json", "r")
         print(result.read())
         result.close()
+
+
+
+
+       
