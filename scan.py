@@ -101,10 +101,10 @@ elif sys.argv[1] == "-a":
 elif sys.argv[1] == "-u":
     print("Enter the Ip")
     IpPingUdp = input()
-    TryIp = IpPingUdp.Split(".")
+    TryIp = IpPingUdp.split(".")
     while len(TryIp) > 4 or "/" in IpPingUdp: 
         print("Enter valid Ip")
         IpPingUdp = input()
-        TryIp = IpPingUdp.Split(".")
+        TryIp = IpPingUdp.split(".")
     print("lol")
 
