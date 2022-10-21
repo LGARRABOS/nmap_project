@@ -68,18 +68,18 @@ elif sys.argv[1] == "-a":
         while(new_scan == "y" |"n" ):
             print("invalid argument")
         if(new_scan == "y"):
-            IpReseauScan = startFirstScanping(interfaces)
-            file = open( interfaces + ".json", "w")
+            IpReseauScan = startFirstScanping(scanInterface)
+            file = open( scanInterface + ".json", "w")
             test = ArpPing(str(IpReseauScan))
             file.write(test)
 
             file.close()
 
-            result = open(interfaces + ".json", "r")
+            result = open(scanInterface + ".json", "r")
             print(result.read())
             result.close()
         else:
-            result = open(interfaces + ".json", "r")
+            result = open(scanInterface + ".json", "r")
             print(result.read())
             result.close()
     else:
