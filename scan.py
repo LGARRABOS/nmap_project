@@ -55,7 +55,7 @@ if len(sys.argv)  == 1:
     help()
 
 if len(sys.argv) > 2 or "-" not in sys.argv[1] :
-    print("Invalid argument")
+    help()
     sys.exit()
 
 scanInterface = askForInterface()
