@@ -51,6 +51,12 @@ def ArpPing(theip):
     save_value = json.dumps(dict1)
     return save_value
 
+def UDPPing(Ip):
+    ans, unans = sr( IP(dst=Ip)/UDP(dport=0) )
+    for sent, recieved in ans:
+        print(recieved.summary())
+
+
 if len(sys.argv)  == 1:
     print("Inavlid command")
     help()
@@ -106,5 +112,5 @@ elif sys.argv[1] == "-u":
         print("Enter valid Ip")
         IpPingUdp = input()
         TryIp = IpPingUdp.split(".")
-    print("lol")
+    UDPPing(IpPingUdp)
 
