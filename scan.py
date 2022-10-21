@@ -55,7 +55,7 @@ def ArpPing(theip):
 def TCPPing(Ip):
     print("Enter the port you want to scan. (Max 7)")
     Port = input()
-    Port = Port.split(", ")
+    Port = Port.split(",")
     while len(Port) > 7:
         print("Enter the port you want to scan. (Max 7)")
         Port = input()
