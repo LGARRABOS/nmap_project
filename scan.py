@@ -59,7 +59,7 @@ def TCPPing(Ip):
     while len(Port) > 7:
         print("Enter the port you want to scan. (Max 7)")
         Port = input()
-        Port = Port.split(", ")
+        Port = Port.split(",")
     for value in Port:
         ans, unans = sr( IP(dst=Ip)/TCP(dport=int(value), flags="S") )
     
