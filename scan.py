@@ -51,8 +51,8 @@ def ArpPing(theip):
     save_value = json.dumps(dict1)
     return save_value
 
-def UDPPing(Ip):
-    ans, unans = sr( IP(dst=Ip)/UDP(dport=0) )
+def TCPPing(Ip):
+    ans, unans = sr( IP(dst=Ip)/TCP(dport=0) )
     for sent, recieved in ans:
         print(recieved.summary())
 
@@ -104,13 +104,13 @@ elif sys.argv[1] == "-a":
         result = open(scanInterface + ".json", "r")
         print(result.read())
         result.close()
-elif sys.argv[1] == "-u":
+elif sys.argv[1] == "-t":
     print("Enter the Ip")
-    IpPingUdp = input()
-    TryIp = IpPingUdp.split(".")
-    while len(TryIp) != 4 or "/" in IpPingUdp: 
+    IpPingTCP = input()
+    TryIp = IpPingTCP.split(".")
+    while len(TryIp) != 4 or "/" in IpPingTCP: 
         print("Enter valid Ip")
-        IpPingUdp = input()
-        TryIp = IpPingUdp.split(".")
-    UDPPing(IpPingUdp)
+        IpPingTCP = input()
+        TryIp = IpPingTCP.split(".")
+    TCPPing(IpPingTCP)
 
