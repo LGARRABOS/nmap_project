@@ -17,7 +17,17 @@ def help():
     print(" -t          Make a TCP request to a specific Ip")
     sys.exit()
 
+def askForInterface():
+    all_interface = netifaces.interfaces()
+    print(all_interface)
+    interfaces = str(input())
 
+    while interfaces not in all_interface:
+        print("\nYou did not enter a valid interface")
+        all_interface = netifaces.interfaces()
+        print(all_interface)
+        interfaces = str(input())
+    return interfaces 
 
 def startFirstScanping(interface):
 
@@ -49,25 +59,18 @@ if len(sys.argv) > 2 or "-" not in sys.argv[1] :
 if sys.argv[1] == "-h":
     help()
 elif sys.argv[1] == "-a":
-    all_interface = netifaces.interfaces()
-    print(all_interface)
-    interfaces = str(input())
+    scanInterface = askForInterface()
 
-    while interfaces not in all_interface:
-        print("\nYou did not enter a valid interface")
-        all_interface = netifaces.interfaces()
-        print(all_interface)
-        interfaces = str(input())
-    if(os.path.exists(interfaces+".json")):
+    if(os.path.exists(scanInterface + ".json")):
        print("already exist")
     else:
-        IpReseauScan = startFirstScanping(interfaces)
-        file = open( interfaces + ".json", "w")
+        IpReseauScan = startFirstScanping(scanInterface)
+        file = open( scanInterface + ".json", "w")
         test = ArpPing(str(IpReseauScan))
         file.write(test)
 
         file.close()
 
-        result = open(interfaces + ".json", "r")
+        result = open(scanInterface + ".json", "r")
         print(result.read())
         result.close()
