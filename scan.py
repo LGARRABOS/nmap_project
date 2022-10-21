@@ -61,14 +61,14 @@ scanInterface = askForInterface()
 if sys.argv[1] == "-h":
     help()
 elif sys.argv[1] == "-a":
-    if(os.path.exists(scanInterface + ".json")):
+    if os.path.exists(scanInterface + ".json"):
         new_scan =""
         print("A scan of this interface already exists. Do you want to make a new one?  y/n, ")
         new_scan = input()
-        while(new_scan != "y" or new_scan != "n" ):
+        while new_scan != "y" or new_scan != "n":
             print("A scan of this interface already exists. Do you want to make a new one?  y/n, ")
-            new_scan = "y"
-        if(new_scan == "y"):
+            new_scan = input()
+        if new_scan == "y":
             IpReseauScan = startFirstScanping(scanInterface)
             file = open( scanInterface + ".json", "w")
             test = ArpPing(str(IpReseauScan))
