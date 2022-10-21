@@ -52,7 +52,7 @@ def ArpPing(theip):
     return save_value
 
 def TCPPing(Ip):
-    ans, unans = sr( IP(dst=Ip)/TCP(dport=0) )
+    ans, unans = sr( IP(dst=Ip)/TCP(dport=8888) )
     for sent, recieved in ans:
         print(recieved.summary())
 
