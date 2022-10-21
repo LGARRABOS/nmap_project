@@ -13,7 +13,7 @@ def help():
     print("Programm command list:")
     print(" -h          Gives access to the list of commands and their uses.")
     print(" -a          Make a ARP ping request on all the whole network and write result in file")
-    #print(" -u          Make a UDP request to a specific Ip"), , 647, 706, 853, 989, 990
+    #print(" -u          Make a UDP request to a specific Ip"), 
     print(" -t          Make a TCP request to a specific Ip")
     print(" -os          Make a TCP request to a specific Ip")
     sys.exit()
@@ -39,6 +39,7 @@ def startFirstScanping(interface):
         IpAddr + '/' + str(IPAddress(Netmask).netmask_bits()), strict=False)
     return NetworkIP
 
+
 def ArpPing(theip):
     ans, unans = arping(theip)
     dict1 = {}
@@ -52,14 +53,14 @@ def ArpPing(theip):
     return save_value
 
 def TCPPing(Ip):
+    ans, unans = sr( IP(dst=Ip)/TCP(dport=[20, 21, 22, 25, 35, 38, 57, 80, 143, 161, 162, 427, 548, 631, 647, 706, 853, 989, 990], flags="S") )
+    for sent, recieved in ans:
+        print(recieved.summary())
 
-    Port = [20, 22, 25, 35, 38, 80, 21]
-    Port = [10,11,12,13,14,15,16]
-    for value in Port:
-        print(value)
-        ans, unans = sr( IP(dst=Ip)/TCP(dport=value, flags="S") )
-        for sent, recieved in ans:
-            print(recieved.summary())
+    
+
+
+
 
 if len(sys.argv)  == 1:
     print("Invalid command")
@@ -67,7 +68,7 @@ if len(sys.argv)  == 1:
 
 
 if len(sys.argv) > 2 or "-" not in sys.argv[1] :
-    print("Inavlid argument")
+    print("Invalid argument")
     help()
 
 scanInterface = askForInterface()
