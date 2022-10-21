@@ -54,7 +54,7 @@ def ArpPing(theip):
 
 def TCPPing(Ip):
     try:
-        ans, unans = sr( IP(dst=Ip)/TCP(dport=[20, 21, 22, 25, 35, 38, 57, 80, 143, 161, 162, 427, 548, 631, 647, 706, 853, 989, 990], flags="S") )
+        sync = sr( IP(dst=Ip)/TCP(dport=[20, 21, 22, 25, 35, 38, 57, 80, 143, 161, 162, 427, 548, 631, 647, 706, 853, 989, 990], flags="S") )
     except socket.gaierror:
         raise ValueError('Hostname {} could not be resolved.'.format(Ip))
     ans, _ = sr(sync, timeout=2, retry = 1)
