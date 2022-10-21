@@ -51,10 +51,13 @@ def ArpPing(theip):
     save_value = json.dumps(dict1)
     return save_value
 
+if len(sys.argv)  == 1:
+    print("Inavlid command")
+    help()
 
 if len(sys.argv) > 2 or "-" not in sys.argv[1] :
-    print("Invalid argument")
-    sys.exit()
+    print("Inavlid argument")
+    help()
 
 scanInterface = askForInterface()
 
