@@ -85,13 +85,16 @@ def TestIpPingTCP():
         sys.argv[2]
     except:
         print("test")
-    print("Enter the Ip")
-    IpPingTCP = input()
-    TryIp = IpPingTCP.split(".")
-    while len(TryIp) != 4 or "/" in IpPingTCP: 
-        print("Enter valid Ip")
+        print("Enter the Ip")
         IpPingTCP = input()
         TryIp = IpPingTCP.split(".")
+        while len(TryIp) != 4 or "/" in IpPingTCP: 
+            print("Enter valid Ip")
+            IpPingTCP = input()
+            TryIp = IpPingTCP.split(".")
+        return IpPingTCP
+    return sys.argv[2]
+    
 
 def TCPPing(Ip):
     print("Enter the port you want to scan.(22,75,490)(Max 7)")
@@ -125,8 +128,8 @@ elif sys.argv[1] == "-a" :
 
         
 elif sys.argv[1] == "-t":
-    IpPingTCP = TestIpPingTCP()
-    TCPPing(IpPingTCP)
+    IpPing = TestIpPingTCP()
+    TCPPing(IpPing)
 
 elif sys.argv[1] == "-os":
     target = input("Enter the Ip address:")
