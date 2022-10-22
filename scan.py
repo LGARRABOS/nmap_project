@@ -19,15 +19,23 @@ def help():
 
 def askForInterface():
     all_interface = netifaces.interfaces()
-    print(all_interface)
-    interfaces = str(input())
-
-    while interfaces not in all_interface:
-        print("\nYou did not enter a valid interface")
-        all_interface = netifaces.interfaces()
+    try:
+        sys.argv[2]
+    except:
         print(all_interface)
         interfaces = str(input())
-    return interfaces 
+
+        while interfaces not in all_interface:
+            print("\nYou did not enter a valid interface")
+            all_interface = netifaces.interfaces()
+            print(all_interface)
+            interfaces = str(input())
+        return interfaces 
+    if sys.argv[2] not in all_interface:
+        print("Wrong interface")
+        sys.exit()
+    return(sys.argv[2])
+
 
 def TestForScanping(interfaceScan):
     if os.path.exists(interfaceScan + ".json"):
