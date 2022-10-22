@@ -149,7 +149,7 @@ def TargetOs():
         while len(TryIp) != 4 or "/" in target: 
             print("Enter valid Ip")
             target = input()
-        TryIp = target.split(".")
+            TryIp = target.split(".")
         while stay == True:
             for value in TryIp:
                 if int(value) < 255 and int(value) > 0:
