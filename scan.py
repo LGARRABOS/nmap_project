@@ -104,7 +104,7 @@ def TestIpPingTCP():
                 if int(value) < 255 and int(value) > 0:
                     count += 1
             if count == 4:
-                False
+                exit()
             else:
                 print("Enter valid Ip")
                 IpPingTCP = input()
