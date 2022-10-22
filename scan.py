@@ -132,11 +132,14 @@ def TCPPing(Ip):
         print("Enter the port you want to scan.(22,75,490)(Max 7)")
         Port = input()
         Port = Port.split(",")
-    for value in Port:
-        print("\n"+ value + ":")
-        ans, unans = sr( IP(dst=Ip)/TCP(dport=int(value), flags="S") )
-        for sent, recieved in ans:
-            print(recieved.summary())
+    # for value in Port:
+        # print("\n"+ value + ":")
+        # ans, unans = sr( IP(dst=Ip)/TCP(dport=int(value), flags="S") )
+        # for sent, recieved in ans:
+        #     print(recieved.summary())
+    ans, unans = sr( IP(dst=Ip)/TCP(dport=[22, 465, 990, 8888, 170, 500 , 61, 981, 155]), flags="S")
+    for sent, recieved in ans:
+        print(recieved.summary())
 
 
 def TargetOs():
