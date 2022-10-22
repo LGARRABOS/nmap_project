@@ -106,10 +106,12 @@ def TestIpPingTCP():
                     count += 1
             if count == 4:
                 stay = False
+                count = 0
             else:
                 print("Enter valid Ip")
                 IpPingTCP = input()
                 TryIp = IpPingTCP.split(".")
+                count = 0
         return IpPingTCP
     if len(sys.argv[2].split(".")) != 4 or "/" in sys.argv[2]:
         print("Wrong Ip")
