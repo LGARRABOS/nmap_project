@@ -210,7 +210,7 @@ def TryTargetInterface():
 
 def PrintInterfaceFile(interface):
     try:
-        result = open(interfaceScan + ".json", "r")
+        result = open(interface + ".json", "r")
     except:
         print("test")
 
