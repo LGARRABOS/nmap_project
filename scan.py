@@ -103,7 +103,7 @@ def TestIpPingTCP():
         print("Wrong Ip")
         sys.exit()
     for value in sys.argv[2].split("."):
-        if value > 255:
+        if int(value) > 255:
             print("Wrong Ip")
             sys.exit()
     return sys.argv[2]
