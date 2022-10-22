@@ -7,6 +7,7 @@ import json
 import sys
 import os
 
+
 def help():
     print("This program is a network scanner")
     print("You have to run this program as root")
@@ -16,6 +17,7 @@ def help():
     print(" -t          Gives from a list of ports the services that listen behind.")
     print(" -os         Make a TCP request to a specific Ip")
     sys.exit()
+
 
 def askForInterface():
     all_interface = netifaces.interfaces()
@@ -30,22 +32,23 @@ def askForInterface():
             all_interface = netifaces.interfaces()
             print(all_interface)
             interfaces = str(input())
-        return interfaces 
+        return interfaces
     if sys.argv[2] not in all_interface:
         print("Wrong interface")
         sys.exit()
-    return(sys.argv[2])
+    return (sys.argv[2])
 
 
 def TestForScanping(interfaceScan):
     if os.path.exists(interfaceScan + ".json"):
-        new_scan =""
+        new_scan = ""
         while new_scan != "y" and new_scan != "n":
-            print("A scan of this interface already exists. Do you want to make a new one?  y/n, ")
+            print(
+                "A scan of this interface already exists. Do you want to make a new one?  y/n, ")
             new_scan = input()
         if new_scan == "y":
             IpReseauScan = startFirstScanping(interfaceScan)
-            file = open( interfaceScan + ".json", "w")
+            file = open(interfaceScan + ".json", "w")
             test = ArpPing(str(IpReseauScan))
             file.write(test)
             file.close()
@@ -55,7 +58,7 @@ def TestForScanping(interfaceScan):
             result.close()
     else:
         IpReseauScan = startFirstScanping(interfaceScan)
-        file = open( interfaceScan + ".json", "w")
+        file = open(interfaceScan + ".json", "w")
         test = ArpPing(str(IpReseauScan))
         file.write(test)
         file.close()
@@ -83,19 +86,26 @@ def ArpPing(theip):
     save_value = json.dumps(dict1)
     return save_value
 
+
 def TestIpPingTCP():
     try:
         sys.argv[2]
     except:
-        print("test")
         print("Enter the Ip")
         IpPingTCP = input()
         TryIp = IpPingTCP.split(".")
-        while len(TryIp) != 4 or "/" in IpPingTCP: 
+        while len(TryIp) != 4 or "/" in IpPingTCP:
             print("Enter valid Ip")
             IpPingTCP = input()
             TryIp = IpPingTCP.split(".")
         return IpPingTCP
+    if len(sys.argv[2].split(".")) != 4 or "/" in sys.argv[2]:
+        print("Wrong Ip")
+        sys.exit()
+    for value in sys.argv[2].split("."):
+        if value > 255:
+            print("Wrong Ip")
+            sys.exit()
     return sys.argv[2]
     
 
@@ -114,28 +124,22 @@ def TCPPing(Ip):
             print(recieved.summary())
 
 
-if len(sys.argv)  == 1:
-    print("Invalid command")
-    help()
+def TargetOs():
+    try:
+        sys.argv[2]
+    except:
+        target = input("Enter the Ip address:")
+        TryIp = target.split(".")
+        while len(TryIp) != 4 or "/" in target: 
+            print("Enter valid Ip")
+            target = input()
+            TryIp = target.split(".")
+        return target
+    
 
 
-if "-" not in sys.argv[1] and len(sys.argv) > 3 :
-    print("Invalid argument")
-    help()
 
-if sys.argv[1] == "-h" and len(sys.argv) < 2:
-    help()
-elif sys.argv[1] == "-a" :
-    scanInterface = askForInterface()
-    TestForScanping(scanInterface)
-
-        
-elif sys.argv[1] == "-t":
-    IpPing = TestIpPingTCP()
-    TCPPing(IpPing)
-
-elif sys.argv[1] == "-os":
-    target = input("Enter the Ip address:")
+def FindOs(target):
     pack = IP(dst=target)/ICMP()
     resp = sr1(pack, timeout=3)
     if resp:
@@ -150,4 +154,25 @@ elif sys.argv[1] == "-os":
             else:
                 print("Not Found")
             print(f'\n\nTTL = {ttl} \n*{os}* Operating System is Detected \n\n')
+
+if len(sys.argv)  == 1:
+    print("Invalid command")
+    help()
+
+
+if "-" not in sys.argv[1] and len(sys.argv) > 3 :
+    print("Invalid argument")
+    help()
+
+if sys.argv[1] == "-h" and len(sys.argv) < 2:
+    help()
+
+elif sys.argv[1] == "-a" :
+    TestForScanping(askForInterface())
+     
+elif sys.argv[1] == "-t":
+    TCPPing(TestIpPingTCP())
+
+elif sys.argv[1] == "-os":
+    FindOs(TargetOs())
 
