@@ -80,6 +80,15 @@ def ArpPing(theip):
     save_value = json.dumps(dict1)
     return save_value
 
+def TestIpPingTCP():
+    print("Enter the Ip")
+    IpPingTCP = input()
+    TryIp = IpPingTCP.split(".")
+    while len(TryIp) != 4 or "/" in IpPingTCP: 
+        print("Enter valid Ip")
+        IpPingTCP = input()
+        TryIp = IpPingTCP.split(".")
+
 def TCPPing(Ip):
     print("Enter the port you want to scan.(22,75,490)(Max 7)")
     Port = input()
@@ -100,25 +109,20 @@ if len(sys.argv)  == 1:
     help()
 
 
-if len(sys.argv) > 2 or "-" not in sys.argv[1] :
+if "-" not in sys.argv[1] and len(sys.argv) > 3 :
     print("Invalid argument")
     help()
 
-if sys.argv[1] == "-h":
+if sys.argv[1] == "-h" and len(sys.argv) < 2:
     help()
-elif sys.argv[1] == "-a":
-    scanInterface = askForInterface()
-    TestForScanping(scanInterface)
+elif sys.argv[1] == "-a" :
+    print(sys.argv[2])
+    # scanInterface = askForInterface()
+    # TestForScanping(scanInterface)
 
         
 elif sys.argv[1] == "-t":
-    print("Enter the Ip")
-    IpPingTCP = input()
-    TryIp = IpPingTCP.split(".")
-    while len(TryIp) != 4 or "/" in IpPingTCP: 
-        print("Enter valid Ip")
-        IpPingTCP = input()
-        TryIp = IpPingTCP.split(".")
+    IpPingTCP = TestIpPingTCP()
     TCPPing(IpPingTCP)
 
 elif sys.argv[1] == "-os":
