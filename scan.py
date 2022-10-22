@@ -137,7 +137,7 @@ def TCPPing(Ip):
         # ans, unans = sr( IP(dst=Ip)/TCP(dport=int(value), flags="S") )
         # for sent, recieved in ans:
         #     print(recieved.summary())
-    ans, unans = sr( IP(dst=Ip)/TCP(dport=[22, 465, 990, 8888, 170, 500 , 61, 981, 155]), flags="S")
+    ans, unans = sr( IP(dst=Ip)/TCP(dport=[22, 465, 990, 8888, 170, 500 , 61, 981, 155]))
     for sent, recieved in ans:
         print(recieved.summary())
 
