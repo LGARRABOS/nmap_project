@@ -212,7 +212,7 @@ def PrintInterfaceFile(interface):
     try:
         result = open(interface + ".json", "r")
     except:
-        print("This file did not exist try sudo python -a " + interface)
+        print("This file did not exist try sudo python scan.py -a " + interface)
         sys.exit()
     print(result.read())
     result.close()
