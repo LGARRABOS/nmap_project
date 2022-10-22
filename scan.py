@@ -88,6 +88,7 @@ def ArpPing(theip):
 
 
 def TestIpPingTCP():
+    count = 0
     try:
         sys.argv[2]
     except:
@@ -98,6 +99,16 @@ def TestIpPingTCP():
             print("Enter valid Ip")
             IpPingTCP = input()
             TryIp = IpPingTCP.split(".")
+        while True:
+            for value in TryIp:
+                if int(value) < 255 and int(value) > 0:
+                    count += 1
+            if count == 4:
+                False
+            else:
+                print("Enter valid Ip")
+                IpPingTCP = input()
+                TryIp = IpPingTCP.split(".")
         return IpPingTCP
     if len(sys.argv[2].split(".")) != 4 or "/" in sys.argv[2]:
         print("Wrong Ip")
