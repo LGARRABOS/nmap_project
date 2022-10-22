@@ -13,7 +13,6 @@ def help():
     print("Programm command list:")
     print(" -h          Gives access to the list of commands and their uses.")
     print(" -a          Make a ARP ping request on all the whole network and write result in file")
-    #print(" -u          Make a UDP request to a specific Ip"), 
     print(" -t          Gives from a list of ports the services that listen behind.")
     print(" -os         Make a TCP request to a specific Ip")
     sys.exit()
@@ -53,11 +52,11 @@ def ArpPing(theip):
     return save_value
 
 def TCPPing(Ip):
-    print("Enter the port you want to scan. (Max 7)")
+    print("Enter the port you want to scan.(22,75,490)(Max 7)")
     Port = input()
     Port = Port.split(",")
     while len(Port) > 7:
-        print("Enter the port you want to scan. (Max 7)")
+        print("Enter the port you want to scan.(22,75,490)(Max 7)")
         Port = input()
         Port = Port.split(",")
     for value in Port:
@@ -75,15 +74,12 @@ if len(sys.argv) > 2 or "-" not in sys.argv[1] :
     print("Invalid argument")
     help()
 
-scanInterface = askForInterface()
-
 if sys.argv[1] == "-h":
     help()
 elif sys.argv[1] == "-a":
+    scanInterface = askForInterface()
     if os.path.exists(scanInterface + ".json"):
         new_scan =""
-        print("A scan of this interface already exists. Do you want to make a new one?  y/n, ")
-        new_scan = input()
         while new_scan != "y" and new_scan != "n":
             print("A scan of this interface already exists. Do you want to make a new one?  y/n, ")
             new_scan = input()
@@ -109,6 +105,7 @@ elif sys.argv[1] == "-a":
         result = open(scanInterface + ".json", "r")
         print(result.read())
         result.close()
+        
 elif sys.argv[1] == "-t":
     print("Enter the Ip")
     IpPingTCP = input()
