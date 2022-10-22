@@ -29,6 +29,35 @@ def askForInterface():
         interfaces = str(input())
     return interfaces 
 
+def TestForScanping(interfaceScan):
+    if os.path.exists(interfaceScan + ".json"):
+        new_scan =""
+        while new_scan != "y" and new_scan != "n":
+            print("A scan of this interface already exists. Do you want to make a new one?  y/n, ")
+            new_scan = input()
+        if new_scan == "y":
+            IpReseauScan = startFirstScanping(interfaceScan)
+            file = open( interfaceScan + ".json", "w")
+            test = ArpPing(str(IpReseauScan))
+            file.write(test)
+            file.close()
+            result = open(interfaceScan + ".json", "r")
+            print(result.read())
+            result.close()
+        else:
+            result = open(interfaceScan + ".json", "r")
+            print(result.read())
+            result.close()
+    else:
+        IpReseauScan = startFirstScanping(interfaceScan)
+        file = open( interfaceScan + ".json", "w")
+        test = ArpPing(str(IpReseauScan))
+        file.write(test)
+        file.close()
+        result = open(interfaceScan + ".json", "r")
+        print(result.read())
+        result.close()
+
 def startFirstScanping(interface):
 
     IpAddr = netifaces.ifaddresses(interface)[netifaces.AF_INET][0]['addr']
@@ -60,7 +89,7 @@ def TCPPing(Ip):
         Port = input()
         Port = Port.split(",")
     for value in Port:
-        print(value + ":")
+        print("\n"+ value + ":")
         ans, unans = sr( IP(dst=Ip)/TCP(dport=int(value), flags="S") )
         for sent, recieved in ans:
             print(recieved.summary())
@@ -79,33 +108,8 @@ if sys.argv[1] == "-h":
     help()
 elif sys.argv[1] == "-a":
     scanInterface = askForInterface()
-    if os.path.exists(scanInterface + ".json"):
-        new_scan =""
-        while new_scan != "y" and new_scan != "n":
-            print("A scan of this interface already exists. Do you want to make a new one?  y/n, ")
-            new_scan = input()
-        if new_scan == "y":
-            IpReseauScan = startFirstScanping(scanInterface)
-            file = open( scanInterface + ".json", "w")
-            test = ArpPing(str(IpReseauScan))
-            file.write(test)
-            file.close()
-            result = open(scanInterface + ".json", "r")
-            print(result.read())
-            result.close()
-        else:
-            result = open(scanInterface + ".json", "r")
-            print(result.read())
-            result.close()
-    else:
-        IpReseauScan = startFirstScanping(scanInterface)
-        file = open( scanInterface + ".json", "w")
-        test = ArpPing(str(IpReseauScan))
-        file.write(test)
-        file.close()
-        result = open(scanInterface + ".json", "r")
-        print(result.read())
-        result.close()
+    TestForScanping(scanInterface)
+
         
 elif sys.argv[1] == "-t":
     print("Enter the Ip")
