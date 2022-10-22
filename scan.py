@@ -12,11 +12,11 @@ def help():
     print("This program is a network scanner")
     print("You have to run this program as root")
     print("Programm command list:")
-    print(" -h          Gives access to the list of commands and their uses.")
-    print(" -a          Make a ARP ping request on all the whole network and write result in file")
-    print(" -t          Gives from a list of ports the services that listen behind.")
-    print(" -os         Make a TCP request to a specific Ip")
-    print(" -p          Print Save of specific interfaces")
+    print(" -h  --help        Gives access to the list of commands and their uses.")
+    print(" -a  --Arp         Make a ARP ping request on all the whole network and write result in file. You can specify the interface you want to scan in argument.")
+    print(" -t  --Tcp         Gives from a list of ports the services that listen behind. You can specify the Ip you want to scan in argument.")
+    print(" -os               Make a request to a specific Ip and return the os. You can specify the Ip you want to scan in argument.")
+    print(" -p  --Print       Print Save of specific interfaces. You can specify the interface you want to scan in argument.")
     sys.exit()
 
 
@@ -226,19 +226,19 @@ if "-" not in sys.argv[1] and len(sys.argv) > 3 :
     print("Invalid argument")
     help()
 
-if sys.argv[1] == "-h" and len(sys.argv) < 2:
+if sys.argv[1] == "-h" or sys.argv[1] == "--help" and len(sys.argv) == 2:
     help()
 
-elif sys.argv[1] == "-a" :
+elif sys.argv[1] == "-a" or sys.argv[1] == "--Arp":
     TestForScanping(askForInterface())
      
-elif sys.argv[1] == "-t":
+elif sys.argv[1] == "-t" or sys.argv[1] == "--Tcp":
     TCPPing(TestIpPingTCP())
 
 elif sys.argv[1] == "-os":
     FindOs(TargetOs())
 
-elif sys.argv[1] == "-p":
+elif sys.argv[1] == "-p" or sys.argv[1] == "--Print":
     PrintInterfaceFile(TryTargetInterface())
 else:
     print("Invalid command")
