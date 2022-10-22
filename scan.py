@@ -16,6 +16,7 @@ def help():
     print(" -a          Make a ARP ping request on all the whole network and write result in file")
     print(" -t          Gives from a list of ports the services that listen behind.")
     print(" -os         Make a TCP request to a specific Ip")
+    print(" -p          Print Save of specific interfaces")
     sys.exit()
 
 
@@ -144,7 +145,8 @@ def TargetOs():
     try:
         sys.argv[2]
     except:
-        target = input("Enter the Ip address:")
+        print("Enter the Ip address:")
+        target = input()
         TryIp = target.split(".")
         while len(TryIp) != 4 or "/" in target: 
             print("Enter valid Ip")
@@ -185,10 +187,37 @@ def FindOs(myTarget):
                 print("Not Found")
             print(f'\n\nTTL = {ttl} \n*{os}* Operating System is Detected \n\n')
 
+
+def TryTargetInterface():
+    all_interface = netifaces.interfaces()
+    try:
+        sys.argv[2]
+    except:
+        print(all_interface)
+        interfaces = str(input())
+
+        while interfaces not in all_interface:
+            print("\nYou did not enter a valid interface")
+            all_interface = netifaces.interfaces()
+            print(all_interface)
+            interfaces = str(input())
+        return interfaces
+    if sys.argv[2] not in all_interface:
+        print("Wrong interface")
+        sys.exit()
+    return (sys.argv[2])
+
+
+def PrintInterfaceFile(interface):
+    try:
+        result = open(interfaceScan + ".json", "r")
+    except:
+        print("test")
+
+
 if len(sys.argv)  == 1:
     print("Invalid command")
     help()
-
 
 if "-" not in sys.argv[1] and len(sys.argv) > 3 :
     print("Invalid argument")
@@ -206,3 +235,8 @@ elif sys.argv[1] == "-t":
 elif sys.argv[1] == "-os":
     FindOs(TargetOs())
 
+elif sys.argv[1] == "-p":
+    PrintInterfaceFile(TryTargetInterface())
+else:
+    print("Invalid command")
+    help()
