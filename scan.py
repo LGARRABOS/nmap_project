@@ -120,9 +120,8 @@ if "-" not in sys.argv[1] and len(sys.argv) > 3 :
 if sys.argv[1] == "-h" and len(sys.argv) < 2:
     help()
 elif sys.argv[1] == "-a" :
-    print(sys.argv[2])
-    # scanInterface = askForInterface()
-    # TestForScanping(scanInterface)
+    scanInterface = askForInterface()
+    TestForScanping(scanInterface)
 
         
 elif sys.argv[1] == "-t":
