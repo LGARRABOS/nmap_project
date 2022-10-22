@@ -49,9 +49,6 @@ def TestForScanping(interfaceScan):
             test = ArpPing(str(IpReseauScan))
             file.write(test)
             file.close()
-            result = open(interfaceScan + ".json", "r")
-            print(result.read())
-            result.close()
         else:
             result = open(interfaceScan + ".json", "r")
             print(result.read())
@@ -62,9 +59,7 @@ def TestForScanping(interfaceScan):
         test = ArpPing(str(IpReseauScan))
         file.write(test)
         file.close()
-        result = open(interfaceScan + ".json", "r")
-        print(result.read())
-        result.close()
+
 
 def startFirstScanping(interface):
 
