@@ -81,6 +81,10 @@ def ArpPing(theip):
     return save_value
 
 def TestIpPingTCP():
+    try:
+        sys.argv[2]
+    except:
+        print("test")
     print("Enter the Ip")
     IpPingTCP = input()
     TryIp = IpPingTCP.split(".")
