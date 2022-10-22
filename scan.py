@@ -133,8 +133,7 @@ def TCPPing(Ip):
         Port = input()
         Port = Port.split(",")
     for value in Port:
-        print()
-        print(value + ":")
+        print("\n"+ value + ":")
         ans, unans = sr( IP(dst=Ip)/TCP(dport=int(value), flags="S") )
         for sent, recieved in ans:
             print(recieved.summary())
