@@ -139,6 +139,8 @@ def TCPPing(Ip):
 
 
 def TargetOs():
+    count = 0
+    stay = True
     try:
         sys.argv[2]
     except:
@@ -147,14 +149,28 @@ def TargetOs():
         while len(TryIp) != 4 or "/" in target: 
             print("Enter valid Ip")
             target = input()
-            TryIp = target.split(".")
+        TryIp = target.split(".")
+        while stay == True:
+            for value in TryIp:
+                if int(value) < 255 and int(value) > 0:
+                    count += 1
+            if count == 4:
+                stay = False
+                count = 0
+            else:
+                print("Enter valid Ip")
+                target = input()
+                TryIp = target.split(".")
+                count = 0
         return target
-    
+    for value in sys.argv[2].split("."):
+        if int(value) > 255:
+            print("Wrong Ip")
+            sys.exit()
+    return sys.argv[2]
 
-
-
-def FindOs(target):
-    pack = IP(dst=target)/ICMP()
+def FindOs(myTarget):
+    pack = IP(dst=myTarget)/ICMP()
     resp = sr1(pack, timeout=3)
     if resp:
         if IP in resp:
