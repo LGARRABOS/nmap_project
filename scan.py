@@ -212,7 +212,10 @@ def PrintInterfaceFile(interface):
     try:
         result = open(interface + ".json", "r")
     except:
-        print("test")
+        print("This file did not exist try -a " + interface)
+        sys.exit()
+    print(result.read())
+    result.close()
 
 
 if len(sys.argv)  == 1:
