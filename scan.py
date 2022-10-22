@@ -226,7 +226,7 @@ if "-" not in sys.argv[1] and len(sys.argv) > 3 :
     print("Invalid argument")
     help()
 
-if sys.argv[1] == "-h" or sys.argv[1] == "--help" and len(sys.argv) == 2:
+if sys.argv[1] == "-h" or sys.argv[1] == "--help" and len(sys.argv) < 2:
     help()
 
 elif sys.argv[1] == "-a" or sys.argv[1] == "--Arp":
