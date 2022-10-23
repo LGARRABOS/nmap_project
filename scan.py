@@ -227,7 +227,7 @@ if len(sys.argv)  == 1:
     help()
 
 if "-" not in sys.argv[1] and len(sys.argv) > 3 :
-    print("Invalid argument")
+    print("Too many argument")
     help()
 
 if sys.argv[1] == "-h" and len(sys.argv) == 2 or sys.argv[1] == "--help" and len(sys.argv) == 2:
@@ -245,5 +245,5 @@ elif sys.argv[1] == "-os":
 elif sys.argv[1] == "-p" or sys.argv[1] == "--print":
     PrintInterfaceFile(TryTargetInterface())
 else:
-    print("Invalid command")
+    print("Invalid Argument")
     help()
