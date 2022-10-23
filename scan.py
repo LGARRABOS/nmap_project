@@ -125,21 +125,22 @@ def TestIpPingTCP():
     
 
 def TCPPing(Ip):
-    print("Enter the port you want to scan.(22,75,490)(Max 7)")
-    Port = input()
-    Port = Port.split(",")
-    while len(Port) > 7:
-        print("Enter the port you want to scan.(22,75,490)(Max 7)")
-        Port = input()
-        Port = Port.split(",")
-    # for value in Port:
-        # print("\n"+ value + ":")
-        # ans, unans = sr( IP(dst=Ip)/TCP(dport=int(value), flags="S") )
-        # for sent, recieved in ans:
-        #     print(recieved.summary())
-    ans, unans = sr( IP(dst=Ip)/TCP(dport=[22, 465, 990, 8888, 170, 500 , 61, 981, 155]))
+    ans, unans = sr( IP(dst=Ip)/ICMP(), timeout=3 )
     for sent, recieved in ans:
         print(recieved.summary())
+    # print("Enter the port you want to scan.(22,75,490)(Max 7)")
+    # Port = input()
+    # Port = Port.split(",")
+    # while len(Port) > 7:
+    #     print("Enter the port you want to scan.(22,75,490)(Max 7)")
+    #     Port = input()
+    #     Port = Port.split(",")
+    # for value in Port:
+    #     print("\n"+ value + ":")
+    #     ans, unans = sr( IP(dst=Ip)/TCP(dport=int(value), flags="S") )
+    #     for sent, recieved in ans:
+    #         print(recieved.summary())
+
 
 
 def TargetOs():
