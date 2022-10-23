@@ -126,6 +126,8 @@ def TestIpPingTCP():
 
 def TCPPing(Ip):
     tryerror = sr( IP(dst=Ip)/ICMP(), timeout=3 )
+    for sent, recieved in tryerror:
+        print(recieved.summary())
     if tryerror == None:
         print("This Ip is down.")
         sys.exit()
