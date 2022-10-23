@@ -125,21 +125,23 @@ def TestIpPingTCP():
     
 
 def TCPPing(Ip):
-    ans, unans = sr( IP(dst=Ip)/ICMP(), timeout=3 )
-    for sent, recieved in ans:
-        print(recieved.summary())
-    # print("Enter the port you want to scan.(22,75,490)(Max 7)")
-    # Port = input()
-    # Port = Port.split(",")
-    # while len(Port) > 7:
-    #     print("Enter the port you want to scan.(22,75,490)(Max 7)")
-    #     Port = input()
-    #     Port = Port.split(",")
-    # for value in Port:
-    #     print("\n"+ value + ":")
-    #     ans, unans = sr( IP(dst=Ip)/TCP(dport=int(value), flags="S") )
-    #     for sent, recieved in ans:
-    #         print(recieved.summary())
+    try:
+        tryerror = sr( IP(dst=Ip)/ICMP(), timeout=3 )
+    except:
+        print("This Ip is down.")
+        sys.exit()
+    print("Enter the port you want to scan.(22,75,490)(Max 7)")
+    Port = input()
+    Port = Port.split(",")
+    while len(Port) > 7:
+        print("Enter the port you want to scan.(22,75,490)(Max 7)")
+        Port = input()
+        Port = Port.split(",")
+    for value in Port:
+        print("\n"+ value + ":")
+        ans, unans = sr( IP(dst=Ip)/TCP(dport=int(value), flags="S") )
+        for sent, recieved in ans:
+            print(recieved.summary())
 
 
 
